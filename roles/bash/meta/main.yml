@@ -1,0 +1,5 @@
+---
+# roles/bash/meta/main.yml
+
+dependencies: []
+...

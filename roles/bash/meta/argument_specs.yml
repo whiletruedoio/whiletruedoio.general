@@ -1,0 +1,36 @@
+---
+# roles/bash/meta/argument_specs.yml
+
+argument_specs:
+  # roles/bash/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for bash"
+    options:
+      bash_package_names:
+        type: "list"
+        elements: "str"
+        default:
+          - "bash"
+          - "bash-completion"
+        description: "Define the package names"
+      bash_package_state:
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "present"
+        description: "Define the package state"
+      bash_dotfiles_system_enabled:
+        type: "bool"
+        default: true
+        description: "Define if dotfiles should be included for all users"
+      bash_powerline_system_enabled:
+        type: "bool"
+        default: true
+        description: "Define if powerline-go should be enabled for all users"
+      bash_checks_enabled:
+        type: "bool"
+        default: false
+        description: "Define if checks should run"
+...

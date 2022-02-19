@@ -1,0 +1,31 @@
+---
+# playbooks/minimal.yml for whiletruedoio.general
+#
+# This playbook provides some minimal automation for servers and desktops.
+# It can be used as a base-line for further automations.
+
+- name: "Minimal Server"
+  hosts: "all"
+
+  tasks:
+
+    - name: "Import misc Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.misc"
+
+    - name: "Import dnf Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.dnf"
+
+    - name: "Import bash Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.bash"
+
+    - name: "Import selinux Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.selinux"
+
+    - name: "Import ssh Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.ssh"
+...

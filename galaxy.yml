@@ -1,0 +1,30 @@
+---
+# galaxy.yml for whiletruedoio.general
+
+namespace: "whiletruedoio"
+name: "general"
+description: "An Ansible collection for general purpose plugins, roles and
+              playbooks."
+
+version: "0.1.0"
+
+readme: "README.md"
+license_file: "LICENSE"
+
+homepage: "https://while-true-do.io"
+repository: "https://github.com/whiletruedoio/whiletruedoio.general"
+documentation: "https://github.com/whiletruedoio/whiletruedoio.general"
+issues: "https://github.com/whiletruedoio/whiletruedoio.general/issues"
+
+authors:
+  - "Daniel Schier <dschier@while-true-do.io>"
+
+tags:
+  - "package"
+  - "service"
+  - "configuration"
+  - "network"
+  - "misc"
+
+dependencies: []
+...

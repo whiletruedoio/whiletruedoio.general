@@ -1,0 +1,16 @@
+---
+# roles/bash/tasks/check.yml
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+
+- name: "Check bash Packages"
+  ansible.builtin.assert:
+    that:
+      - "'bash' in ansible_facts.packages"
+      - "'bash-completion' in ansible_facts.packages"
+      - "'ShellCheck' in ansible_facts.packages"
+      - "'bats' in ansible_facts.packages"
+      - "'powerline-go' in ansible_facts.packages"
+...
