@@ -19,4 +19,10 @@ lint_yaml_task:
     image: "docker.io/library/alpine:latest"
   install_script: "apk update && apk add yamllint"
   lint_script: "yamllint ."
+
+lint_ansible_task:
+  name: "Lint Ansible"
+  container:
+    image: "quay.io/ansible/creator-ee:latest"
+  lint_script: "ansible-lint ."
 ...

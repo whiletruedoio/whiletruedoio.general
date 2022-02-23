@@ -16,6 +16,7 @@ This is the changelog of
 - Added: role bash to install and configure Bash and tests for the role
 - Added: role misc to configure hostname, timezone, machine-id and install some
   common tools
+- Added: ansible-lint
 
 <!--
 Examples:
