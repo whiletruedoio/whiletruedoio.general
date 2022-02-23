@@ -10,11 +10,12 @@ This is the changelog of
 ## [Unreleased]
 
 - Added: LICENSE
-- Added: KUDOS.txt
 - Added: metafiles (.gitmessage, .gitignore, .gitattributes, .editorconfig)
 - Added: .yamllint for sanity checks
 - Added: galaxy.yml for package builds
 - Added: role bash to install and configure Bash and tests for the role
+- Added: role misc to configure hostname, timezone, machine-id and install some
+  common tools
 
 <!--
 Examples:

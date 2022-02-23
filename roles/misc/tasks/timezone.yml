@@ -1,0 +1,14 @@
+---
+# roles/misc/tasks/timezone.yml
+
+## Configuration Management
+
+- name: "Manage timezone Configuration"
+  community.general.timezone:
+    name: "{{ misc_timezone }}"
+  become: true
+  tags:
+    - "misc"
+    - "timezone"
+    - "configuration"
+...

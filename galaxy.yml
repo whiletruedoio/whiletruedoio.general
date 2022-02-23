@@ -3,7 +3,7 @@
 
 namespace: "whiletruedoio"
 name: "general"
-description: "An Ansible collection for general purpose plugins, roles and
+description: "Ansible collection for general purpose plugins, roles and
               playbooks."
 
 version: "0.1.0"

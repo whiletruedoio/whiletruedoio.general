@@ -3,20 +3,24 @@ reference: https://www.makeareadme.com/
 reference: https://commonmark.org/
 -->
 
-# Ansible - bash
+# Ansible - misc
 
-An Ansible role to install [GNU Bash](https://www.gnu.org/software/bash/).
+An Ansible role to run some miscellaneous tasks.
 
 ## Motivation
 
-GNU Bash is the default shell for many GNU/Linux environments and should be
-installed and configured properly.
+Some simple tasks don't require a dedicated role, or don't fit somewhere else.
+Having a place to put them is very helpful. In case something grows bigger,
+it can be ported to a new location easily.
 
 ## Description
 
-The role installs bash, bash-completion, ShellCheck, Bats and Powerline-Go and
-configures the tools properly. It also adds configurations to include dotfiles
-from HOME directories of the users, if existing.
+The role currently contains the below tasks:
+
+- hostname configuration
+- timezone configuration
+- machine-id creation
+- tool installation
 
 ## Usage
 
@@ -25,12 +29,12 @@ install and run the code on your machine, please check out this section.
 
 ### Requirements
 
-The role supports the following target Operating System:
+Please install the needed requirements as described below:
 
-- Fedora Linux 35+
-- CentOS Stream 8+
-- AlmaLinux 8+
-- RockyLinux 8+
+```shell
+# Install requirements
+$ ansible-galaxy install -r requirements.yml
+```
 
 ### Install
 
@@ -46,7 +50,8 @@ $ ansible-galaxy install whiletruedoio.general
 
 ### Documentation
 
-Below you can find some simple examples and specs for the role.
+You can either use all tasks of the role or only a subset of it. Below, you can
+find some example playbooks.
 
 #### Arguments
 
@@ -61,7 +66,7 @@ described in the below files.
 
 #### Simple Example
 
-Use the defaults of the role and install/configure all tools.
+Just run all tasks from the role.
 
 ```yaml
 ---
@@ -70,15 +75,15 @@ Use the defaults of the role and install/configure all tools.
 
   tasks:
 
-    - name: "Import bash Role"
+    - name: "Import misc Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.bash"
+        name: "whiletruedoio.general.misc"
 ...
 ```
 
 #### Advanced Example
 
-Use the defaults of the role and install/configure all tools.
+Only use the timezone tasks from the role.
 
 ```yaml
 ---
@@ -87,12 +92,28 @@ Use the defaults of the role and install/configure all tools.
 
   tasks:
 
-    - name: "Import bash Role"
+    - name: "Import timezone tasks misc Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.bash"
+        name: "whiletruedoio.general.misc"
+        tasks_from: "timezone"
+...
+```
+
+Only use the hostname tasks from the role and specify your own hostname.
+
+```yaml
+---
+- name: "Advanced Example"
+  hosts: "all"
+
+  tasks:
+
+    - name: "Import hostname tasks misc Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.misc"
+        tasks_from: "hostname"
       vars:
-        bash_dotfiles_system_enabled: false
-        bash_powerline_system_enabled: false
+        misc_config_hostname: "host01"
 ...
 ```
 

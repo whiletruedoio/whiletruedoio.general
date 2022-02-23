@@ -1,0 +1,64 @@
+---
+# roles/misc/meta/argument_specs.yml
+
+argument_specs:
+  # roles/misc/tasks/hostname.yml entry point
+  hostname:
+    short_description: "Set the hostname"
+    options:
+      misc_config_hostname:
+        type: "str"
+        default: "{{ inventory_hostname }}"
+        description: "Define the desired hostname. Defaults to the hostname
+                      specified in the inventory."
+
+  # roles/misc/tasks/timezone.yml entry point
+  timezone:
+    short_description: "Set the timezone"
+    options:
+      misc_config_timezone:
+        type: "str"
+        default: "Etc/UTC"
+        description: "Define the timezone"
+
+  # roles/misc/tasks/tools.yml entry point
+  tools:
+    short_description: "Install misc tools"
+    options:
+      misc_editor_package_names:
+        type: "list"
+        elements: "str"
+        description: "Editor Packages"
+      misc_editor_package_state:
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "present"
+        description: "Define the package state"
+      misc_other_package_names:
+        type: "list"
+        elements: "str"
+        description: "Other misc Packages"
+      misc_other_package_state:
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "absent"
+        description: "Define the package state"
+      misc_utility_package_names:
+        type: "list"
+        elements: "str"
+        description: "Utility Packages"
+      misc_utility_package_state:
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "present"
+        description: "Define the package state"
+...

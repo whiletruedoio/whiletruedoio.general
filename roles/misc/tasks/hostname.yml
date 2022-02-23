@@ -1,0 +1,14 @@
+---
+# roles/misc/tasks/hostname.yml
+
+## Configuration Management
+
+- name: "Manage hostname Configuration"
+  ansible.builtin.hostname:
+    name: "{{ misc_hostname }}"
+  become: true
+  tags:
+    - "misc"
+    - "hostname"
+    - "configuration"
+...

@@ -11,7 +11,7 @@ reference: https://commonmark.org/
 
 # Ansible - whiletruedoio.general
 
-An Ansible collection for general purpose plugins, roles and playbooks.
+Ansible collection for general purpose plugins, roles and playbooks.
 
 ## Motivation
 

@@ -1,0 +1,6 @@
+---
+# roles/misc/requirements.yml
+
+collections:
+  - name: "community.general"
+...
