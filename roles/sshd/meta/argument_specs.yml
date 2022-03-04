@@ -49,7 +49,7 @@ argument_specs:
         type: "int"
         default: 6
       sshd_config_MaxStartups:
-        description: "Define the behavior for concurrent, unauthenticated 
+        description: "Define the behavior for concurrent, unauthenticated
                       connections."
         type: "str"
         default: "10:30:100"
