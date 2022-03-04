@@ -66,9 +66,9 @@
     - "sshd"
     - "configuration"
 
-## Systemd Management
+## SELinux Management
 
-- name: Manage sshd SELinux Port
+- name: "Manage sshd SELinux Port"
   community.general.seport:
     ports: "{{ sshd_config_Port }}"
     proto: "tcp"
@@ -76,8 +76,8 @@
     state: "present"
   become: true
   when:
-    - ansible_selinux.status == "enabled"
-    - wtd_srv_sshd_package_state != "absent"
+    - "ansible_selinux.status == 'enabled'"
+    - "sshd_package_state != 'absent'"
   tags:
     - "ssh"
     - "sshd"

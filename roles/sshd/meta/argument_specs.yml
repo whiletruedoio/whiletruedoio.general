@@ -1,6 +1,5 @@
 ---
 # roles/sshd/meta/argument_specs.yml
-# reference: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#role-argument-validation
 
 argument_specs:
   # roles/sshd/tasks/main.yml entry point
@@ -50,7 +49,8 @@ argument_specs:
         type: "int"
         default: 6
       sshd_config_MaxStartups:
-        description: "Define the behavior for concurrent, unauthenticated connections."
+        description: "Define the behavior for concurrent, unauthenticated 
+                      connections."
         type: "str"
         default: "10:30:100"
       sshd_config_PubkeyAuthentication:
@@ -68,7 +68,8 @@ argument_specs:
           - "yes"
           - "no"
       sshd_config_PermitEmptyPasswords:
-        description: "Specifies if the server allows login with empty passwords."
+        description: "Specifies if the server allows login with empty
+                      passwords."
         type: "str"
         default: "no"
         choices:
@@ -128,7 +129,8 @@ argument_specs:
         default: "INFO"
       ## Session
       sshd_config_TCPKeepAlive:
-        description: "Specifies whether the system should send TCP keepalive messages."
+        description: "Specifies whether the system should send TCP keepalive
+                      messages."
         type: "str"
         default: "yes"
         choices:

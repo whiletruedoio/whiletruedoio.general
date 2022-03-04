@@ -34,11 +34,11 @@
 
 - name: "Gather firewalld Facts"
   ansible.posix.firewalld_info:
-    active_zones: yes
+    active_zones: true
   become: true
   register: "r_fw_zones"
   when:
-  - "firewalld_default_zone is defined"
+    - "firewalld_default_zone is defined"
   tags:
     - "firewalld"
     - "network"
