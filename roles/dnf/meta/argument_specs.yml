@@ -1,0 +1,28 @@
+---
+# roles/dnf/meta/argument_specs.yml
+
+argument_specs:
+  # roles/dnf/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for dnf."
+    options:
+      dnf_package_names:
+        type: "list"
+        elements: "str"
+        default:
+          - "dnf"
+          - "dnf-plugins-core"
+        description: "Define the package names."
+      dnf_package_state:
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "present"
+        description: "Define the package state."
+      dnf_checks_enabled:
+        type: "bool"
+        default: false
+        description: "Define if checks should run."
+...

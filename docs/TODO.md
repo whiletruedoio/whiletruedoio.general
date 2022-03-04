@@ -9,12 +9,12 @@ Plain ToDo file for whiletruedoio.general.
 - [ ] minimal server playbook
   - [x] bash role
   - [ ] chrony role (client only)
-  - [ ] dnf role
+  - [x] dnf role
     - [ ] add dnf automatic
-  - [ ] firewalld role
-  - [ ] misc role
-  - [ ] selinux role
-  - [ ] ssh role
+  - [x] firewalld role
+  - [x] misc role
+  - [x] selinux role
+  - [x] sshd role
   - [ ] sudo role
   - [ ] user role
 

@@ -1,0 +1,219 @@
+---
+# roles/sshd/meta/argument_specs.yml
+# reference: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#role-argument-validation
+
+argument_specs:
+  # roles/sshd/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for ssh."
+    options:
+      # Package Management
+      sshd_package_names:
+        description: "Define the package names."
+        type: "list"
+        elements: "str"
+        default:
+          - "openssh-server"
+      sshd_package_state:
+        description: "Define the package state."
+        type: "str"
+        default: "present"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+      sshd_config_LoginGraceTime:
+        description: "Specify the wait time to sucessfully login."
+        type: "int"
+        default: 120
+
+      # Configuration Management
+      ## Autentication
+      sshd_config_PermitRootLogin:
+        description: "Define how/if a user can login as root."
+        type: "str"
+        default: "prohibit-password"
+        choices:
+          - "yes"
+          - "prohibit-password"
+          - "forced-commands-only"
+          - "no"
+      sshd_config_StrictModes:
+        description: "Define whether sshd should check file modes before login."
+        type: "str"
+        default: "yes"
+        choices:
+          - "yes"
+          - "no"
+      sshd_config_MaxAuthTries:
+        description: "Specifies the maximum authentication attempts permitted."
+        type: "int"
+        default: 6
+      sshd_config_MaxStartups:
+        description: "Define the behavior for concurrent, unauthenticated connections."
+        type: "str"
+        default: "10:30:100"
+      sshd_config_PubkeyAuthentication:
+        description: "Specifies whether public key authentication is allowed."
+        type: "str"
+        default: "yes"
+        choices:
+          - "yes"
+          - "no"
+      sshd_config_PasswordAuthentication:
+        description: "Specifies whether password authentication is allowed."
+        type: "str"
+        default: "yes"
+        choices:
+          - "yes"
+          - "no"
+      sshd_config_PermitEmptyPasswords:
+        description: "Specifies if the server allows login with empty passwords."
+        type: "str"
+        default: "no"
+        choices:
+          - "yes"
+          - "no"
+      ## Connection
+      sshd_config_Port:
+        description: "The port sshd listens on."
+        type: "int"
+        default: 22
+      sshd_config_AddressFamily:
+        description: "Specifies which address family should be used by sshd."
+        type: "str"
+        default: "any"
+        choices:
+          - "any"
+          - "inet"
+          - "inet6"
+      sshd_config_ListenAddress:
+        description: "Specify the listen addresses used by sshd."
+        type: "list"
+        default:
+          - "0.0.0.0"
+          - "::"
+        elements: "str"
+      ## Information
+      sshd_config_banner_file:
+        description: "Specify the banner file, that should be used/copied."
+        type: "str"
+        default: "banner.j2"
+      sshd_config_Banner:
+        description: "The path on the server where the banner should be stored."
+        type: "str"
+        default: "none"
+      sshd_config_PrintMotd:
+        description: "Define if the motd should be shown on login."
+        type: "str"
+        default: "yes"
+        choices:
+          - "yes"
+          - "no"
+      sshd_config_PrintLastLog:
+        description: "Specify if last login attempts should be shown."
+        type: "str"
+        default: "yes"
+        choices:
+          - "yes"
+          - "no"
+      ## Logging
+      sshd_config_SyslogFacility:
+        description: "Define the log facility"
+        type: "str"
+        default: "AUTH"
+      sshd_config_LogLevel:
+        description: "Define the log level."
+        type: "str"
+        default: "INFO"
+      ## Session
+      sshd_config_TCPKeepAlive:
+        description: "Specifies whether the system should send TCP keepalive messages."
+        type: "str"
+        default: "yes"
+        choices:
+          - "yes"
+          - "no"
+      sshd_config_ClientAliveCountMax:
+        description: "Specify how many alive pings should be sent."
+        type: "int"
+        default: 3
+      sshd_config_ClientAliveInterval:
+        description: "Specify when alive pings should be sent."
+        type: "int"
+        default: 0
+      sshd_config_MaxSessions:
+        description: "Specify how many sessions per connection are allowed."
+        type: "int"
+        default: 10
+      sshd_config_Compression:
+        description: "Specifies whether compression is enabled."
+        type: "str"
+        default: "yes"
+        choices:
+          - "yes"
+          - "no"
+          - "delayed"
+      sshd_config_AllowAgentForwarding:
+        description: "Specifies whether ssh-agent forwarding is permitted."
+        default: "yes"
+        choices:
+          - "yes"
+          - "no"
+      sshd_config_X11Forwarding:
+        description: "Specifies whether X11 forwarding is permitted."
+        type: "str"
+        default: "no"
+        choices:
+          - "yes"
+          - "no"
+
+      # Service Management
+      sshd_service_name:
+        descrtiption: "The name of the service."
+        type: "str"
+        default: "sshd"
+      sshd_service_state:
+        description: "The state of the service."
+        type: "str"
+        default: "started"
+        choices:
+          - "started"
+          - "stopped"
+          - "restarted"
+      sshd_service_enabled:
+        description: "Define if the service should be enabled."
+        type: "bool"
+        default: true
+
+      # Firewall Management
+      sshd_firewall_service:
+        description: "The name of the firewall service."
+        type: "str"
+        default: "ssh"
+      sshd_firewall_state:
+        description: "Define if the service is permitted."
+        type: "str"
+        default: "enabled"
+        choices:
+          - "enabled"
+          - "disabled"
+      sshd_firewall_zone:
+        description: "The name of your default/public zone."
+        type: "str"
+        default: ""
+      sshd_firewall_immediate:
+        description: "Specify if the policy should be immediate."
+        type: "bool"
+        default: true
+      sshd_firewall_permanent:
+        description: "Specify if the policy should be permanent."
+        type: "bool"
+        default: true
+
+      # Checks
+      sshd_checks_enabled:
+        type: "bool"
+        default: false
+        description: "Define if checks should run."
+...

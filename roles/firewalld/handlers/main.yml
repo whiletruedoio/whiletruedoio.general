@@ -1,0 +1,14 @@
+---
+# roles/firewalld/handlers/main.yml
+
+- name: "Restart firewalld Service"
+  ansible.builtin.service:
+    name: "{{ firewalld_service_name }}"
+    state: "restarted"
+  become: true
+  when:
+    - "firewalld_package_state != 'absent'"
+  tags:
+    - "firewalld"
+    - "service"
+...

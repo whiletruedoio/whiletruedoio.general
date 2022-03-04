@@ -1,0 +1,5 @@
+---
+# roles/firewalld/meta/main.yml
+
+dependencies: []
+...

@@ -1,0 +1,16 @@
+---
+# roles/sshd/handlers/main.yml
+
+- name: "Restart sshd Service"
+  ansible.builtin.service:
+    name: "{{ sshd_service_name }}"
+    state: "restarted"
+  become: true
+  when:
+    - "sshd_package_state != 'absent'"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "configuration"
+    - "service"
+...

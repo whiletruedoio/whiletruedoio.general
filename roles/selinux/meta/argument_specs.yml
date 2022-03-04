@@ -1,0 +1,41 @@
+---
+# roles/selinux/meta/argument_specs.yml
+
+argument_specs:
+  # roles/selinux/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for selinux."
+    options:
+      selinux_package_names:
+        type: "list"
+        elements: "str"
+        default:
+          - "libselinux"
+          - "selinux-policy"
+          - "setroubleshoot-server"
+        description: "Define the package names."
+      selinux_package_state:
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "present"
+        description: "Define the package state."
+      selinux_config_policy:
+        type: "str"
+        default: "targeted"
+        description: "Define the selinux policy."
+      selinux_config_state:
+        type: "str"
+        choices:
+          - "enforcing"
+          - "disabled"
+          - "permissive"
+        default: "enforcing"
+        description: "Define the selinux state."
+      selinux_system_reboot_enabled:
+        type: "bool"
+        default: true
+        description: "Define if the system should automatically reboot."
+...

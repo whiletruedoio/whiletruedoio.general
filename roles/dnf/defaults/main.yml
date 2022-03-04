@@ -1,0 +1,25 @@
+---
+# roles/dnf/defaults/main.yml
+
+## Package Management
+
+dnf_package_names:
+  - "dnf"
+  - "dnf-plugins-core"
+dnf_package_state: "present"
+
+## Configuration Management
+
+### Please check 'man 5 dnf.conf' before changing the below values
+dnf_config_gpgcheck: "True"
+dnf_config_installonly_limit: "3"
+dnf_config_clean_requirements_on_remove: "True"
+dnf_config_best: "False"
+dnf_config_skip_if_unavailable: "True"
+dnf_config_fastestmirror: "True"
+dnf_config_max_parallel_downloads: "10"
+
+## Checks
+
+dnf_checks_enabled: false
+...

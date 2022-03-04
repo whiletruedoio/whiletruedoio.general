@@ -1,0 +1,78 @@
+---
+# roles/sshd/defaults/main.yml
+
+## Package Management
+
+sshd_package_names: "openssh-server"
+sshd_package_state: "present"
+
+## Configuration Management
+
+## The sshd_config manual describes, that default values should not be defined
+## but commented in the configuration files. Additional, one should prefer the
+## usage of /etc/sshd_config.d/ over the config file itself. Therefore, many
+## configuration options are commented here, and will only be used if they are
+## defined.
+
+### Authentication
+
+# sshd_config_LoginGraceTime: 120
+# sshd_config_PermitRootLogin: "prohibit-password"
+# sshd_config_StrictModes: "yes"
+# sshd_config_MaxAuthTries: 6
+# sshd_config_MaxStartups: "10:30:100"
+
+# sshd_config_PubkeyAuthentication: "yes"
+# sshd_config_PasswordAuthentication: "yes"
+# sshd_config_PermitEmptyPasswords: "no"
+
+### Connection
+
+# sshd_config_Port: 22
+# sshd_config_AddressFamily: "any"
+# sshd_config_ListenAddress:
+#   - "0.0.0.0"
+#   - "::"
+
+### Information
+
+# sshd_config_banner_file: "banner.j2"
+
+# sshd_config_Banner: "none"
+# sshd_config_PrintMotd: "yes"
+# sshd_config_PrintLastLog: "yes"
+
+### Logging
+
+# sshd_config_SyslogFacility: "AUTH"
+# sshd_config_LogLevel: "INFO"
+
+### Session
+
+# sshd_config_TCPKeepAlive: "yes"
+# sshd_config_ClientAliveCountMax: 3
+# sshd_config_ClientAliveInterval: 0
+# sshd_config_MaxSessions: 10
+# sshd_config_Compression: "yes"
+
+# sshd_config_AllowAgentForwarding: "yes"
+# sshd_config_X11Forwarding: "no"
+
+## Service Management
+
+sshd_service_name: "sshd"
+sshd_service_state: "started"
+sshd_service_enabled: true
+
+## Firewall Management
+
+sshd_firewall_service: "ssh"
+sshd_firewall_state: "enabled"
+# sshd_firewall_zone: ""
+sshd_firewall_immediate: true
+sshd_firewall_permanent: true
+
+## Checks
+
+sshd_checks_enabled: false
+...

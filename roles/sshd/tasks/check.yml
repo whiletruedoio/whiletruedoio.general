@@ -1,0 +1,45 @@
+---
+# roles/ssh/tasks/check.yml
+
+- name: "Flush handlers"
+  ansible.builtin.meta: "flush_handlers"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+
+- name: "Gather service Facts"
+  ansible.builtin.service_facts:
+    manager: "auto"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+
+- name: "Check ssh Facts"
+  ansible.builtin.assert:
+    that:
+      - "'openssh-server' in ansible_facts.packages"
+      - "ansible_facts['services']['sshd.service']['state'] == 'running'"
+      - "ansible_facts['services']['sshd.service']['status'] == 'enabled'"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+
+- name: "Check ssh Port"
+  ansible.builtin.wait_for:
+    port: "{{ sshd_config_Port | default('22') }}"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+...

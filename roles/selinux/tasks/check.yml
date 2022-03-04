@@ -1,0 +1,14 @@
+---
+# roles/selinux/tasks/check.yml
+
+- name: "Gather facts"
+  ansible.builtin.setup:
+
+- name: "Check selinux"
+  ansible.builtin.assert:
+    that:
+      - "ansible_selinux.config_mode == 'enforcing'"
+      - "ansible_selinux.mode == 'enforcing'"
+      - "ansible_selinux.status == 'enabled'"
+      - "ansible_selinux.type == 'targeted'"
+...

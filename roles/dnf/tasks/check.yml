@@ -1,0 +1,26 @@
+---
+# roles/dnf/tasks/check.yml
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+
+- name: "Gather effective dnf Configuration"
+  command:
+    cmd: "dnf config-manager --dump"
+  register: "r_dnf"
+  changed_when: false
+
+- name: "Check dnf Packages"
+  ansible.builtin.assert:
+    that:
+      - "'dnf' in ansible_facts.packages"
+      - "'dnf-plugins-core' in ansible_facts.packages"
+      - "'gpgcheck = 1' in r_dnf.stdout"
+      - "'installonly_limit = 3' in r_dnf.stdout"
+      - "'clean_requirements_on_remove = 1' in r_dnf.stdout"
+      - "'best = 0' in r_dnf.stdout"
+      - "'skip_if_unavailable = 1' in r_dnf.stdout"
+      - "'fastestmirror = 1' in r_dnf.stdout"
+      - "'max_parallel_downloads = 10' in r_dnf.stdout"
+...

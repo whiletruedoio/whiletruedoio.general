@@ -26,5 +26,7 @@ tags:
   - "network"
   - "misc"
 
-dependencies: []
+dependencies:
+  "community.general": ">=1.0.0"
+  "ansible.posix": ">1.0.0"
 ...

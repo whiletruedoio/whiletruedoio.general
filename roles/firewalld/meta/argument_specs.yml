@@ -1,0 +1,25 @@
+---
+# roles/firewalld/meta/argument_specs.yml
+
+argument_specs:
+  # roles/firewalld/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for firewalld."
+    options:
+      firewalld_package_names:
+        type: "list"
+        elements: "str"
+        description: "Define the package names."
+      firewalld_package_state:
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "present"
+        description: "Define the package state."
+      firewalld_checks_enabled:
+        type: "bool"
+        default: false
+        description: "Define if checks should run."
+...

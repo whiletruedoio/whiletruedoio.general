@@ -1,0 +1,38 @@
+---
+# roles/dnf/tasks/main.yml
+
+## Package Management
+
+- name: "Manage dnf Packages"
+  ansible.builtin.package:
+    name: "{{ dnf_package_names }}"
+    state: "{{ dnf_package_state }}"
+  become: true
+  tags:
+    - "dnf"
+    - "package"
+
+## Configuration Management
+
+- name: "Manage dnf Configuration"
+  ansible.builtin.template:
+    src: "dnf.conf.j2"
+    dest: "/etc/dnf/dnf.conf"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  tags:
+    - "dnf"
+    - "configuration"
+
+## Checks
+
+- name: "Import Checks for dnf"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "dnf_checks_enabled | bool"
+  tags:
+    - "dnf"
+    - "check"
+...

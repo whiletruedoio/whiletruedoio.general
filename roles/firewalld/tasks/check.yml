@@ -1,0 +1,22 @@
+---
+# roles/firewalld/tasks/check.yml
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+
+- name: "Gather service Facts"
+  ansible.builtin.service_facts:
+    manager: "auto"
+
+- name: "Check firewalld"
+  ansible.builtin.assert:
+    that:
+      - "'firewalld' in ansible_facts.packages"
+      - "ansible_facts['services']['firewalld.service']['state'] == 'running'"
+      - "ansible_facts['services']['firewalld.service']['status'] == 'enabled'"
+  tags:
+    - "firewalld"
+    - "network"
+    - "check"
+...

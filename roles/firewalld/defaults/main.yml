@@ -1,0 +1,25 @@
+---
+# roles/firewalld/defaults/main.yml
+
+## Package Management
+
+firewalld_package_names:
+  - "firewalld"
+firewalld_package_state: "present"
+
+## Service Management
+
+firewalld_service_name: "firewalld.service"
+firewalld_service_state: "started"
+firewalld_service_enabled: true
+
+## Zone Management
+## Firewalld allows to customize the default zone by the user and vendor. You
+## can spevify your favorite default zone below.
+
+# firewalld_default_zone: ""
+
+## Checks
+
+firewalld_checks_enabled: false
+...

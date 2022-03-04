@@ -1,0 +1,30 @@
+{{ ansible_managed | comment }}
+
+## Auth
+
+{% if sshd_config_LoginGraceTime is defined %}
+LoginGraceTime {{ sshd_config_LoginGraceTime }}
+{% endif %}
+{% if sshd_config_PermitRootLogin is defined %}
+PermitRootLogin {{ sshd_config_PermitRootLogin }}
+{% endif %}
+
+{% if sshd_config_StrictModes is defined %}
+StrictModes {{ sshd_config_StrictModes }}
+{% endif %}
+{% if sshd_config_MaxAuthTries is defined %}
+MaxAuthTries {{ sshd_config_MaxAuthTries }}
+{% endif %}
+{% if  is defined %}
+MaxStartups {{ sshd_config_MaxStartups }}
+{% endif %}
+
+{% if sshd_config_PubkeyAuthentication is defined %}
+PubkeyAuthentication {{ sshd_config_PubkeyAuthentication }}
+{% endif %}
+{% if sshd_config_PasswordAuthentication is defined %}
+PasswordAuthentication {{ sshd_config_PasswordAuthentication }}
+{% endif %}
+{% if sshd_config_PermitEmptyPasswords is defined %}
+PermitEmptyPasswords {{ sshd_config_PermitEmptyPasswords }}
+{% endif %}

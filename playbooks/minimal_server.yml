@@ -25,6 +25,10 @@
       ansible.builtin.import_role:
         name: "whiletruedoio.general.selinux"
 
+    - name: "Import firewalld Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.firewalld"
+
     - name: "Import ssh Role"
       ansible.builtin.import_role:
         name: "whiletruedoio.general.ssh"

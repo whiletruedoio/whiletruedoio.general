@@ -17,16 +17,12 @@ This is the changelog of
 - Added: role misc to configure hostname, timezone, machine-id and install some
   common tools
 - Added: ansible-lint
-
-<!--
-Examples:
-
-- Added: Cool new thing that will help ...
-- Fixed: That something is no longer broken...
-- Changed: This feature, so one can use...
-- Deprecated: This feature, since we will remove it...
-- Removed: This documentation, since it is no longer needed...
--->
+- Added: role dnf to take care of dnf configuration
+- Added: role sshd to install and configure sshd
+- Added: role firewalld to install and configure firewalld
+- Added: role selinux to install and configure selinux
+- Updated: README.md documentation
+- Updated: galaxy.yml dependencies
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

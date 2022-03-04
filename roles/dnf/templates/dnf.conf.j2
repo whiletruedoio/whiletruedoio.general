@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+
+[main]
+
+gpgcheck={{ dnf_config_gpgcheck }}
+installonly_limit={{ dnf_config_installonly_limit }}
+clean_requirements_on_remove={{ dnf_config_clean_requirements_on_remove }}
+best={{ dnf_config_best }}
+skip_if_unavailable={{ dnf_config_skip_if_unavailable }}
+
+fastestmirror={{ dnf_config_fastestmirror }}
+max_parallel_downloads={{ dnf_config_max_parallel_downloads }}

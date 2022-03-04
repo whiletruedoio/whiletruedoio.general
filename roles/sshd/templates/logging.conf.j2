@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+
+# Logging
+
+{% if sshd_config_SyslogFacility is defined %}
+SyslogFacility {{ sshd_config_SyslogFacility }}
+{% endif %}
+{% if sshd_config_LogLevel is defined %}
+LogLevel {{ sshd_config_LogLevel }}
+{% endif %}

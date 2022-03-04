@@ -37,13 +37,13 @@ checks to improve handling and usability. Some roles also improve security by
 applying common security patterns from [OpenSCAP](https://www.open-scap.org/).
 The following roles are bundled with this collection.
 
-- [bash](roles/bash/)
-- [dnf](roles/dnf/)
-- [firewalld](roles/firewalld/)
-- [misc](roles/misc/)
-- [selinux](roles/selinux/)
-- [sshd](roles/sshd/)
-- [user](roles/user/)
+- [bash](roles/bash/README.md)
+- [dnf](roles/dnf/README.md)
+- [firewalld](roles/firewalld/README.md)
+- [misc](roles/misc/README.md)
+- [selinux](roles/selinux/README.md)
+- [sshd](roles/sshd/README.md)
+- [user](roles/user/README.md)
 
 ### Playbooks
 
@@ -59,7 +59,11 @@ install and run the code on your machine, please check out this section.
 
 ### Requirements
 
-The provided plugins and roles support the following target Operating System:
+The provided playbooks, plugins and roles require Ansible-Core 2.12 on the
+**control node**.
+
+The provided playbooks, plugins and roles support the following Operating System
+on the **target nodes**:
 
 - Fedora Linux 35+
 - CentOS Stream 8+
@@ -68,23 +72,19 @@ The provided plugins and roles support the following target Operating System:
 
 ### Install
 
-Installing an Ansible collection can be done in multiple ways. Below, you can
-find some examples via `ansible-galaxy` and `git`.
+Installing an Ansible collection can be done in multiple ways.
 
 #### Via Ansible Galaxy
 
 This is the most common way for users and will install the collection in the
-proper directories.
+proper directories. It will also install the required dependency colections.
 
 ```sh
 # Install
 $ ansible-galaxy collection install whiletruedoio.general
 
-# Install a specific version
-$ ansible-galaxy collection install whiletruedoio.general
-
 # Update
-$ ansible-galaxy collection install whiletruedoio.general
+$ ansible-galaxy collection install whiletruedoio.general --upgrade
 
 # Remove
 $ ansible-galaxy collection install whiletruedoio.general
@@ -93,7 +93,7 @@ $ ansible-galaxy collection install whiletruedoio.general
 #### Via Git Repository
 
 For development purposes, you can also clone the repository and copy it to your
-desired location.
+desired location. Be aware, that you need to install dependencies on your own.
 
 ```sh
 # Clone

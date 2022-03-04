@@ -1,0 +1,149 @@
+---
+# roles/sshd/tasks/main.yml
+
+## Package Management
+
+- name: "Manage sshd Packages"
+  ansible.builtin.package:
+    name: "{{ sshd_package_names }}"
+    state: "{{ sshd_package_state }}"
+  become: true
+  notify:
+    - "Restart ssh Service"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "package"
+
+## Configuration Management
+
+- name: "Manage sshd Configuration Directory"
+  ansible.builtin.file:
+    path: "/etc/ssh/sshd_config.d/"
+    state: "directory"
+  become: true
+  tags:
+    - "ssh"
+    - "sshd"
+    - "configuration"
+
+- name: "Manage sshd banner Configuration"
+  ansible.builtin.template:
+    src: "{{ sshd_config_banner_file }}"
+    dest: "{{ sshd_config_Banner }}"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  when:
+    - "sshd_config_Banner != 'none'"
+  notify:
+    - "Restart ssh Service"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "configuration"
+
+- name: "Manage sshd Configuration Files"
+  ansible.builtin.template:
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/ssh/sshd_config.d/60-{{ item }}.conf"
+    owner: "root"
+    group: "root"
+    mode: 0644
+    validate: "/usr/sbin/sshd -t -f %s"
+  become: true
+  loop:
+    - "authentication"
+    - "connection"
+    - "information"
+    - "logging"
+    - "session"
+  notify:
+    - "Restart ssh Service"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "configuration"
+
+## Systemd Management
+
+- name: Manage sshd SELinux Port
+  community.general.seport:
+    ports: "{{ sshd_config_Port }}"
+    proto: "tcp"
+    setype: "sshd_port_t"
+    state: "present"
+  become: true
+  when:
+    - ansible_selinux.status == "enabled"
+    - wtd_srv_sshd_package_state != "absent"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "selinux"
+    - "configuration"
+
+## Firewall Management
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+
+- name: "Manage sshd Firewall Policy"
+  ansible.posix.firewalld:
+    service: "{{ sshd_firewall_service }}"
+    state: "{{ sshd_firewall_state }}"
+    zone: "{{ sshd_firewall_zone | default(omit) }}"
+    immediate: "{{ sshd_firewall_immediate }}"
+    permanent: "{{ sshd_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+    - "sshd_config_Port is not defined"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "firewall"
+
+- name: "Manage sshd Firewall Policy (custom port)"
+  ansible.posix.firewalld:
+    port: "{{ sshd_config_Port }}/tcp"
+    state: "{{ sshd_firewall_state }}"
+    zone: "{{ sshd_firewall_zone | default(omit) }}"
+    immediate: "{{ sshd_firewall_immediate }}"
+    permanent: "{{ sshd_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+    - "sshd_config_Port is defined"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "firewall"
+
+## Service Management
+
+- name: "Manage sshd Services"
+  ansible.builtin.service:
+    name: "{{ sshd_service_name }}"
+    state: "{{ sshd_service_state }}"
+    enabled: "{{ sshd_service_enabled }}"
+  become: true
+  when:
+    - "sshd_package_state != 'absent'"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "service"
+
+## Checks
+
+- name: "Import Checks for sshd"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "sshd_checks_enabled | bool"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+...

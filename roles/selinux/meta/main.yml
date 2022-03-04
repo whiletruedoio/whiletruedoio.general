@@ -1,0 +1,5 @@
+---
+# roles/selinux/meta/main.yml
+
+dependencies: []
+...

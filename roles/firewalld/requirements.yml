@@ -1,0 +1,6 @@
+---
+# roles/firewalld/requirements.yml
+
+collections:
+  - name: "ansible.posix"
+...

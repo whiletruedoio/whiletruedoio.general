@@ -1,0 +1,71 @@
+---
+# roles/firewalld/tasks/main.yml
+
+## Package Management
+
+- name: "Manage firewalld Packages"
+  ansible.builtin.package:
+    name: "{{ firewalld_package_names }}"
+    state: "{{ firewalld_package_state }}"
+  become: true
+  notify:
+    - "Restart firewalld Service"
+  tags:
+    - "firewalld"
+    - "network"
+    - "package"
+
+## Service Management
+
+- name: "Manage firewalld Services"
+  ansible.builtin.service:
+    name: "{{ firewalld_service_name }}"
+    state: "{{ firewalld_service_state }}"
+    enabled: "{{ firewalld_service_enabled }}"
+  become: true
+  when:
+    - "firewalld_package_state != 'absent'"
+  tags:
+    - "firewalld"
+    - "network"
+    - "package"
+
+## Zone Management
+
+- name: "Gather firewalld Facts"
+  ansible.posix.firewalld_info:
+    active_zones: yes
+  become: true
+  register: "r_fw_zones"
+  when:
+  - "firewalld_default_zone is defined"
+  tags:
+    - "firewalld"
+    - "network"
+    - "zones"
+
+- name: "Manage default firewalld Zone"
+  ansible.builtin.command:
+    cmd: "firewall-cmd --set-default-zone={{ firewalld_default_zone }}"
+  become: true
+  changed_when:
+    - "r_fw_zones.firewalld_info.default_zones != firewalld_default_zone"
+  when:
+    - "firewalld_default_zone is defined"
+    - "r_fw_zones.firewalld_info.default_zones != firewalld_default_zone"
+  tags:
+    - "firewalld"
+    - "network"
+    - "zone"
+
+## Checks
+
+- name: "Import Checks for firewalld"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "firewalld_checks_enabled | bool"
+  tags:
+    - "firewalld"
+    - "network"
+    - "check"
+...

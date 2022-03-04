@@ -1,0 +1,15 @@
+{{ ansible_managed | comment }}
+
+## Connection
+
+{% if sshd_config_Port is defined %}
+Port {{ sshd_config_Port }}
+{% endif %}
+{% if sshd_config_AddressFamily is defined %}
+AddressFamily {{ sshd_config_AddressFamily }}
+{% endif %}
+{% if sshd_config_ListenAddress is defined %}
+{% for address in sshd_config_ListenAddress %}
+ListenAddress {{ address }}
+{% endfor %}
+{% endif %}

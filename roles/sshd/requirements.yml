@@ -1,0 +1,9 @@
+---
+# roles/sshd/requirements.yml
+
+collections:
+  - name: "community.general"
+  - name: "ansible.posix"
+
+roles: []
+...

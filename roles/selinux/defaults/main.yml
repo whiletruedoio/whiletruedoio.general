@@ -1,0 +1,24 @@
+---
+# roles/selinux/defaults/main.yml
+
+## Package Management
+
+selinux_package_names:
+  - "libselinux"
+  - "setroubleshoot-server"
+  - "selinux-policy"
+selinux_package_state: "present"
+
+## Configuration Management
+
+selinux_config_policy: "targeted"
+selinux_config_state: "enforcing"
+
+## System Management
+
+selinux_system_reboot_enabled: true
+
+## Checks
+
+selinux_checks_enabled: true
+...

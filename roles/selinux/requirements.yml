@@ -1,0 +1,8 @@
+---
+# roles/selinux/requirements.yml
+
+collections:
+  - name: "ansible.posix"
+
+roles: []
+...

@@ -1,0 +1,60 @@
+---
+# roles/selinux/tasks/main.yml
+
+## Package Management
+
+- name: "Manage selinux Packages"
+  ansible.builtin.package:
+    name: "{{ selinux_package_names }}"
+    state: "{{ selinux_package_state }}"
+  become: true
+  tags:
+    - "selinux"
+    - "package"
+
+## Configuration Management
+
+- name: "Manage selinux Configuration"
+  ansible.posix.selinux:
+    policy: "{{ selinux_config_policy }}"
+    state: "{{ selinux_config_state }}"
+  become: true
+  register: "r_selinux_config"
+  tags:
+    - "selinux"
+    - "package"
+    - "configuration"
+
+- name: "Verbose output for r_selinux"
+  ansible.builtin.debug:
+    var: "r_selinux_config"
+    verbosity: 1
+
+## System Configuration
+
+- name: "Reboot system"
+  ansible.builtin.reboot:
+    reboot_timeout: 3600
+  become: true
+  when:
+    - "ansible_virtualization_type != 'container'"
+    - "r_selinux_config.reboot_required | bool"
+    - "selinux_system_reboot_enabled | bool"
+  tags:
+    - "selinux"
+    - "system"
+    - "reboot"
+    - "package"
+    - "configuration"
+
+## Checks
+
+- name: "Import Checks for selinux"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "ansible_virtualization_type != 'container'"
+    - "selinux_checks_enabled | bool"
+  tags:
+    - "selinux"
+    - "check"
+...

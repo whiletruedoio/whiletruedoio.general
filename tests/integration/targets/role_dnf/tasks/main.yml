@@ -1,0 +1,14 @@
+---
+# tests/integration/targets/role_dnf/tasks/main.yml
+
+################################################################################
+# This is a test role, specifically designed for testing. It should not be     #
+# used as a template for proper role development.                              #
+################################################################################
+
+- name: "Import dnf Role"
+  ansible.builtin.import_role:
+    name: "whiletruedio.general.dnf"
+  vars:
+    dnf_checks_enabled: true
+...

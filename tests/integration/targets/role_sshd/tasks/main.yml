@@ -1,0 +1,28 @@
+---
+# tests/integration/targets/role_sshd/tasks/main.yml
+
+################################################################################
+# This is a test role, specifically designed for testing. It should not be     #
+# used as a template for proper role development.                              #
+################################################################################
+
+- name: "Install firewalld for testing"
+  ansible.builtin.package:
+    name: "firewalld"
+    state: "present"
+  become: true
+
+- name: "Enable firewalld for testing"
+  ansible.builtin.service:
+    name: "firewalld.service"
+    state: "started"
+  become: true
+
+- name: "Import sshd Role"
+  ansible.builtin.import_role:
+    name: "whiletruedoio.general.sshd"
+  vars:
+    sshd_checks_enabled: true
+    sshd_config_PermitRootLogin: "no"
+    sshd_config_Banner: "/etc/ssh/sshd_config.d/banner"
+...

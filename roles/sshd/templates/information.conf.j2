@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+
+## Information
+{% if sshd_config_Banner is defined %}
+Banner {{ sshd_config_Banner }}
+{% endif %}
+{% if sshd_config_PrintMotd is defined %}
+PrintMotd {{ sshd_config_PrintMotd }}
+{% endif %}
+{% if sshd_config_PrintLastLog is defined %}
+PrintLastLog {{ sshd_config_PrintLastLog }}
+{% endif %}
