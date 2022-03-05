@@ -1,0 +1,13 @@
+---
+# roles/user/meta/argument_specs.yml
+
+argument_specs:
+  # roles/user/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for user."
+    options:
+      user_users:
+        description: "Define a list of users."
+        type: "list"
+        default: []
+...

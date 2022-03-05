@@ -1,0 +1,18 @@
+---
+# roles/user/tasks/main.yml
+
+## User Management
+
+- name: "Import user Tasks"
+  ansible.builtin.import_tasks: "user.yml"
+  loop: "{{ user_users }}"
+  loop_control:
+    loop_var: "l_user"
+    label: "{{ l_user.username }}"
+  when:
+    - "user_users is defined"
+    - "user_users | length > 0"
+  tags:
+    - "user"
+    - "key"
+...

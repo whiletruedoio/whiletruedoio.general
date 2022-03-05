@@ -1,0 +1,33 @@
+---
+# roles/user/tasks/user.yml
+
+- name: "Manage user Account"
+  ansible.builtin.user:
+    name: "{{ l_user.username }}"
+    groups: "{{ l_user.groups | default(omit) }}"
+    password: "{{ l_user.password_hash | default(omit) }}"
+    update_password: "{{ l_user.password_update | default('always')"
+    uid: "{{ l_user.uid | default(omit) }}"
+    shell: "{{ l_user.shell | default(omit) }}"
+    home: "{{ l_user.home | default(omit) }}"
+    system: "{{ l_user.system | default(omit) }}"
+    state: "{{ l_user.state | default('present' }}"
+  become: true
+  tags:
+    - "user"
+
+- name: "Manage user Authorized Keys"
+  ansible.posix.authorized_key:
+    user: "{{ l_user.username }}"
+    state: "{{ item.state | default('present') }}"
+    key: "{{ item.key }}"
+    exclusive: "{{ item.exclusive | default(false) }}"
+  become: true
+  loop: "{{ l_user.auth_keys }}"
+  when:
+    - "l_user.auth_keys is defined"
+    - "l_user.auth_keys | length > 0"
+  tags:
+    - "user"
+    - "key"
+...

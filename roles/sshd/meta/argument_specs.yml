@@ -21,13 +21,13 @@ argument_specs:
           - "present"
           - "absent"
           - "latest"
+
+      # Configuration Management
+      ## Autentication
       sshd_config_LoginGraceTime:
         description: "Specify the wait time to sucessfully login."
         type: "int"
         default: 120
-
-      # Configuration Management
-      ## Autentication
       sshd_config_PermitRootLogin:
         description: "Define how/if a user can login as root."
         type: "str"
@@ -174,7 +174,7 @@ argument_specs:
       sshd_service_name:
         descrtiption: "The name of the service."
         type: "str"
-        default: "sshd"
+        default: "sshd.service"
       sshd_service_state:
         description: "The state of the service."
         type: "str"

@@ -23,6 +23,8 @@ This is the changelog of
 - Added: role selinux to install and configure selinux
 - Updated: README.md documentation
 - Updated: galaxy.yml dependencies
+- Added: thermald role
+- Added: user role
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

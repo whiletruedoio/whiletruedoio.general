@@ -4,7 +4,8 @@ Plain ToDo file for whiletruedoio.general.
 
 ## Release v1.0.0
 
-- [ ] update role
+- [ ] update playbooks
+  - [ ] update role
 
 - [ ] minimal server playbook
   - [x] bash role
@@ -16,14 +17,14 @@ Plain ToDo file for whiletruedoio.general.
   - [x] selinux role
   - [x] sshd role
   - [ ] sudo role
-  - [ ] user role
+  - [x] user role
 
 - [ ] base server playbook
   - [ ] minimal server playbook
   - [ ] cockpit role
   - [ ] kdump role
   - [ ] pcp role
-  - [ ] thermald role
+  - [x] thermald role
   - [ ] tuned role
 
 - [ ] Update user documentation

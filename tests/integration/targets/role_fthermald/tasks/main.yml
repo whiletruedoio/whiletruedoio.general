@@ -1,0 +1,14 @@
+---
+# tests/integration/targets/role_firewall/tasks/main.yml
+
+################################################################################
+# This is a test role, specifically designed for testing. It should not be     #
+# used as a template for proper role development.                              #
+################################################################################
+
+- name: "Import thermald Role"
+  ansible.builtin.import_role:
+    name: "whiletruedoio.general.thermald"
+  vars:
+    thermald_checks_enabled: true
+...

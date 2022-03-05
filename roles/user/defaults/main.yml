@@ -1,0 +1,25 @@
+---
+# roles/user/defaults/main.yml
+
+## User Management
+
+user_users: []
+# - username: ""
+#   groups:
+#     - ""
+#   password_hash: ""
+#   password_update: "always"
+#   uid: ""
+#   shell: ""
+#   home: ""
+#   system: "false"
+#   state: "present"
+#   auth_keys:
+#     - key: ""
+#       state: ""
+#       exclusive: ""
+
+## Checks
+
+user_checks_enabled: false
+...

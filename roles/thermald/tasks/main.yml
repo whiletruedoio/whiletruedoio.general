@@ -1,0 +1,41 @@
+---
+# roles/thermald/tasks/main.yml
+
+## Package Management
+
+- name: "Manage thermald Packages"
+  ansible.builtin.package:
+    name: "{{ thermald_package_names }}"
+    state: "{{ thermald_package_state }}"
+  become: true
+  when:
+    - "'GenuineIntel' in ansible_processor"
+  tags:
+    - "thermald"
+    - "package"
+
+## Service Management
+
+- name: "Manage thermald Service"
+  ansible.builtin.service:
+    name: "{{ thermald_service_name }}"
+    state: "{{ thermald_service_state }}"
+    enabled: "{{ thermald_service_enabled }}"
+  become: true
+  when:
+    - "'GenuineIntel' in ansible_processor"
+  tags:
+    - "thermald"
+    - "service"
+
+## Checks
+
+- name: "Import Checks for thermald"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "thermald_checks_enabled | bool"
+    - "'GenuineIntel' in ansible_processor"
+  tags:
+    - "thermald"
+    - "check"
+...

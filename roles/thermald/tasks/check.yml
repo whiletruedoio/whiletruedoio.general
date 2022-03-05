@@ -1,0 +1,30 @@
+---
+# roles/ssh/tasks/check.yml
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+
+- name: "Gather service Facts"
+  ansible.builtin.service_facts:
+    manager: "auto"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+
+- name: "Check thermald Facts"
+  ansible.builtin.assert:
+    that:
+      - "'thermald' in ansible_facts.packages"
+      - "ansible_facts['services']['thermald.service']['state'] == 'running'"
+      - "ansible_facts['services']['thermald.service']['status'] == 'enabled'"
+  tags:
+    - "ssh"
+    - "sshd"
+    - "check"
+...
