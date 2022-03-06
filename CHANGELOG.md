@@ -25,6 +25,7 @@ This is the changelog of
 - Updated: galaxy.yml dependencies
 - Added: thermald role
 - Added: user role
+- Added: avahi role
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

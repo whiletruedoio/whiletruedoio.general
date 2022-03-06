@@ -21,11 +21,19 @@ Plain ToDo file for whiletruedoio.general.
 
 - [ ] base server playbook
   - [ ] minimal server playbook
-  - [ ] cockpit role
   - [ ] kdump role
   - [ ] pcp role
   - [x] thermald role
   - [ ] tuned role
+  - [ ] cockpit role
+    - [ ] selinux support
+    - [ ] pcp support
+    - [ ] package support
+    - [ ] kdump support
+
+- [ ] home server playbook
+  - [ ] base server playbook
+  - [ ] avahi role
 
 - [ ] Update user documentation
 
@@ -33,12 +41,14 @@ Plain ToDo file for whiletruedoio.general.
 
 - [ ] kvm server playbook
   - [ ] base server playbook
-  - [ ] cockpit role + cockpit machines
+  - [ ] cockpit role
+    - [ ] cockpit machines
   - [ ] kvm role
 
 - [ ] podman server playbook
   - [ ] base server playbook
-  - [ ] cockpit role + cockpit podman
+  - [ ] cockpit role
+    - [ ] cockpit podman
   - [ ] podman role
 
 - [ ] ansible server playbook

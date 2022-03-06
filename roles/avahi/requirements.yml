@@ -1,0 +1,8 @@
+---
+# roles/avahi/requirements.yml
+
+collections:
+  - name: "ansible.posix"
+
+roles: []
+...

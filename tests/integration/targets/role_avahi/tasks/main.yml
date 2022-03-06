@@ -1,0 +1,14 @@
+---
+# tests/integration/targets/role_avahi/tasks/main.yml
+
+################################################################################
+# This is a test role, specifically designed for testing. It should not be     #
+# used as a template for proper role development.                              #
+################################################################################
+
+- name: "Import avahi Role"
+  ansible.builtin.import_role:
+    name: "whiletruedoio.general.avahi"
+  vars:
+    avahi_checks_enabled: true
+...

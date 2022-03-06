@@ -1,0 +1,63 @@
+---
+# roles/avahi/tasks/main.yml
+
+## Package Management
+
+- name: "Manage avahi Packages"
+  ansible.builtin.package:
+    name: "{{ avahi_package_names }}"
+    state: "{{ avahi_package_state }}"
+  become: true
+  notify:
+    - "Restart avahi Service"
+  tags:
+    - "avahi"
+    - "package"
+
+## Service Management
+
+- name: "Manage avahi Services"
+  ansible.builtin.service:
+    name: "{{ avahi_service_name }}"
+    state: "{{ avahi_service_state }}"
+    enabled: "{{ avahi_service_enabled }}"
+  become: true
+  when:
+    - "avahi_package_state != 'absent'"
+  tags:
+    - "avahi"
+    - "package"
+
+## Firewall Management
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "avahi"
+    - "firewall"
+
+- name: "Manage avahi Firewall Policy"
+  ansible.posix.firewalld:
+    service: "{{ avahi_firewall_service }}"
+    state: "{{ avahi_firewall_state }}"
+    zone: "{{ avahi_firewall_zone }}"
+    immediate: "{{ avahi_firewall_immediate }}"
+    permanent: "{{ avahi_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+  tags:
+    - "avahi"
+    - "firewall"
+
+## Checks
+
+- name: "Import Checks for avahi"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "avahi_checks_enabled | bool"
+  tags:
+    - "avahi"
+    - "check"
+...

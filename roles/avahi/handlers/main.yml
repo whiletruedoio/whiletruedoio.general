@@ -1,0 +1,16 @@
+---
+# roles/avahi/handlers/main.yml
+
+- name: "Restart avahi Service"
+  ansible.builtin.service:
+    name: "{{ avahi_service_name }}"
+    state: "restarted"
+  become: true
+  when:
+    - "avahi_package_state != 'absent'"
+  tags:
+    - "avahi"
+    - "package"
+    - "configuration"
+    - "service"
+...

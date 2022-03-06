@@ -1,0 +1,5 @@
+---
+# roles/avahi/meta/main.yml
+
+dependencies: []
+...

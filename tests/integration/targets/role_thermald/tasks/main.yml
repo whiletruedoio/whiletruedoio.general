@@ -1,5 +1,5 @@
 ---
-# tests/integration/targets/role_firewall/tasks/main.yml
+# tests/integration/targets/role_thermald/tasks/main.yml
 
 ################################################################################
 # This is a test role, specifically designed for testing. It should not be     #

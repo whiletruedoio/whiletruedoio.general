@@ -37,11 +37,12 @@ checks to improve handling and usability. Some roles also improve security by
 applying common security patterns from [OpenSCAP](https://www.open-scap.org/).
 The following roles are bundled with this collection.
 
-- [bash](roles/bash/README.md)
+- [Avahi](roles/avahi/README.md)
+- [GNU Bash](roles/bash/README.md)
 - [dnf](roles/dnf/README.md)
 - [firewalld](roles/firewalld/README.md)
 - [misc](roles/misc/README.md)
-- [selinux](roles/selinux/README.md)
+- [SELinux](roles/selinux/README.md)
 - [sshd](roles/sshd/README.md)
 - [thermald](roles/thermald/README.md)
 - [user](roles/user/README.md)

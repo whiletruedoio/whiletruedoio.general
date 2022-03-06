@@ -10,6 +10,8 @@
   become: true
   when:
     - "'GenuineIntel' in ansible_processor"
+  notify:
+    - "Restart thermald Service"
   tags:
     - "thermald"
     - "package"

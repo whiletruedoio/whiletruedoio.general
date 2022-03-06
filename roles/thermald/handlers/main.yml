@@ -1,0 +1,17 @@
+---
+# roles/thermald/handlers/main.yml
+
+## Service Management
+
+- name: "Restart thermald Service"
+  ansible.builtin.service:
+    name: "{{ thermald_service_name }}"
+    state: "restarted"
+  become: true
+  when:
+    - "thermald_package_state != 'absent'"
+    - "'GenuineIntel' in ansible_processor"
+  tags:
+    - "thermald"
+    - "service"
+...

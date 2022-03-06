@@ -1,0 +1,15 @@
+---
+# roles/avahi/tasks/check.yml
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+
+- name: "Check avahi"
+  ansible.builtin.assert:
+    that:
+      - "'firewalld' in ansible_facts.packages"
+  tags:
+    - "avahi"
+    - "check"
+...
