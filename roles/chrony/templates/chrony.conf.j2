@@ -1,0 +1,30 @@
+{{ ansible_managed | comment }}
+
+{% if chrony_config_pools | length > 0 %}
+# Pools
+{%for pool in chrony_config_pools %}
+pool {{ pool.name }} {{ pool.options | default('iburst') }}
+{% endfor %}
+{% elif chrony_config_servers | length > 0 %}
+# Servers
+{% for server in chrony_config_servers %}
+server {{ server.name }} {{ server.options | default ('iburst') }}
+{% endfor %}
+{% else %}
+# Fallback address, since none was given
+pool pool.ntp.org iburst
+{% endif %}
+
+makestep {{ chrony_config_makestep }}
+{% if chrony_config_rtcsync | bool %}
+rtcsync
+{% else %}
+#rtcsync
+{% endif %}
+leapsectz {{ chrony_config_leapsectz }}
+
+sourcedir {{ chrony_config_sourcedir }}
+driftfile {{ chrony_config_driftfile }}
+keyfile {{ chrony_config_keyfile }}
+ntsdumpdir {{ chrony_config_ntsdumpdir }}
+logdir {{ chrony_config_logdir }}

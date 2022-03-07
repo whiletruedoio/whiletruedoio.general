@@ -1,0 +1,16 @@
+---
+# roles/chrony/handlers/main.yml
+
+- name: "Restart chrony Service"
+  ansible.builtin.service:
+    name: "{{ chrony_service_name }}"
+    state: "restarted"
+  become: true
+  when:
+    - "chrony_package_state != 'absent'"
+  tags:
+    - "chrony"
+    - "package"
+    - "configuration"
+    - "service"
+...

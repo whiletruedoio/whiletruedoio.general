@@ -38,7 +38,8 @@ applying common security patterns from [OpenSCAP](https://www.open-scap.org/).
 The following roles are bundled with this collection.
 
 - [Avahi](roles/avahi/README.md)
-- [GNU Bash](roles/bash/README.md)
+- [Bash](roles/bash/README.md)
+- [Chrony](roles/chrony/README.md)
 - [dnf](roles/dnf/README.md)
 - [firewalld](roles/firewalld/README.md)
 - [misc](roles/misc/README.md)

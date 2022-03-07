@@ -17,6 +17,10 @@
       ansible.builtin.import_role:
         name: "whiletruedoio.general.dnf"
 
+    - name: "Import chrony Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.chrony"
+
     - name: "Import bash Role"
       ansible.builtin.import_role:
         name: "whiletruedoio.general.bash"

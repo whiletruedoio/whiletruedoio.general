@@ -1,0 +1,7 @@
+---
+# roles/chrony/requirements.yml
+
+collections: []
+
+roles: []
+...

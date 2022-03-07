@@ -1,0 +1,38 @@
+---
+# roles/chrony/defaults/main.yml
+
+## Package Management
+
+chrony_package_names:
+  - "chrony"
+chrony_package_state: "present"
+
+## Configuration Management
+
+### Servers and Pools are mutually exclusive
+chrony_config_pools: []
+# - name: "pool.ntp.org"
+#   options: "iburst"
+chrony_config_servers: []
+# - name: "192.168.10.100"
+#   options: "iburst"
+
+chrony_config_sourcedir: "/run/chrony-dhcp"
+chrony_config_driftfile: "/var/lib/chrony/drifts"
+chrony_config_makestep: "1.0 3"
+chrony_config_rtcsync: true
+chrony_config_keyfile: "/etc/chrony.keys"
+chrony_config_ntsdumpdir: "/var/lib/chrony"
+chrony_config_leapsectz: "right/UTC"
+chrony_config_logdir: "/var/log/chrony"
+
+## Service Management
+
+chrony_service_name: "chronyd.service"
+chrony_service_state: "started"
+chrony_service_enabled: true
+
+## Checks
+
+chrony_checks_enabled: false
+...

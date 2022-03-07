@@ -3,20 +3,19 @@ reference: https://www.makeareadme.com/
 reference: https://commonmark.org/
 -->
 
-# Ansible - avahi
+# Ansible - chrony
 
-An Ansible role to install and configure [Avahi](https://avahi.org/).
+An Ansible role to install and configure [Chrony](https://chrony.tuxfamily.org/).
 
 ## Motivation
 
-Avahi is a service discovery technology for Linux using mDNS/DNS-SD. It is
-compatible to Apple Bonjour and makes it easy to discover local hosts in a
-small network scenario. 
+Chrony is the default NTP client/server on Red Hat family operating systems. It
+is strongly recommended to have it properly configured and running, especially
+if you are running the machine virtualized (ex.: cloud).
 
 ## Description
 
-The Ansible role install Avahi and starts the daemon. If firewalld is installed,
-it will also allow mDNS traffic to path through.
+The role takes care of the installation, configuration and starting Chrony.
 
 ## Usage
 
@@ -61,7 +60,7 @@ described in the below files.
 
 #### Simple Example
 
-Install and enable Avahi with the system defaults.
+Install, configure and enable Chrony with the defaults.
 
 ```yaml
 ---
@@ -70,9 +69,30 @@ Install and enable Avahi with the system defaults.
 
   tasks:
 
-    - name: "Import avahi Role"
+    - name: "Import chrony Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.avahi"
+        name: "whiletruedoio.general.chrony"
+...
+```
+
+#### Advanced Example
+
+Use your own ntp servers instead.
+
+```yaml
+---
+- name: "Simple Example"
+  hosts: "all"
+
+  tasks:
+
+    - name: "Import chrony Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.chrony"
+      vars:
+        chrony_config_servers:
+          - name: "192.168.10.100"
+            options: "iburst"
 ...
 ```
 

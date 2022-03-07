@@ -9,7 +9,7 @@ Plain ToDo file for whiletruedoio.general.
 
 - [ ] minimal server playbook
   - [x] bash role
-  - [ ] chrony role (client only)
+  - [x] chrony role (client only)
   - [x] dnf role
     - [ ] add dnf automatic
   - [x] firewalld role
@@ -18,6 +18,7 @@ Plain ToDo file for whiletruedoio.general.
   - [x] sshd role
   - [ ] sudo role
   - [x] user role
+    - [ ] sudo-config per user
 
 - [ ] base server playbook
   - [ ] minimal server playbook
@@ -33,7 +34,7 @@ Plain ToDo file for whiletruedoio.general.
 
 - [ ] home server playbook
   - [ ] base server playbook
-  - [ ] avahi role
+  - [x] avahi role
 
 - [ ] Update user documentation
 

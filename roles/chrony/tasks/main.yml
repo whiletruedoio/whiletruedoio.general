@@ -1,0 +1,56 @@
+---
+# roles/chrony/tasks/main.yml
+
+## Package Management
+
+- name: "Manage chrony Packages"
+  ansible.builtin.package:
+    name: "{{ chrony_package_names }}"
+    state: "{{ chrony_package_state }}"
+  become: true
+  notify:
+    - "Restart chrony Service"
+  tags:
+    - "chrony"
+    - "package"
+
+## Configuration Management
+
+- name: "Manage chrony Configuration"
+  ansible.builtin.template:
+    src: "chrony.conf.j2"
+    dest: "/etc/chrony.conf"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  notify:
+    - "Restart chrony Service"
+  tags:
+    - "chrony"
+    - "configuration"
+
+## Service Management
+
+- name: "Manage chrony Services"
+  ansible.builtin.service:
+    name: "{{ chrony_service_name }}"
+    state: "{{ chrony_service_state }}"
+    enabled: "{{ chrony_service_enabled }}"
+  become: true
+  when:
+    - "chrony_package_state != 'absent'"
+  tags:
+    - "chrony"
+    - "service"
+
+## Checks
+
+- name: "Import Checks for chrony"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "chrony_checks_enabled | bool"
+  tags:
+    - "chrony"
+    - "check"
+...

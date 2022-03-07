@@ -3,6 +3,6 @@
 
 collections:
 
-  - name: "community.general"
   - name: "ansible.posix"
+  - name: "community.general"
 ...
