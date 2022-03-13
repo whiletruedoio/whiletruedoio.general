@@ -10,4 +10,14 @@
   tags:
     - "k3s"
     - "devel"
+
+- name: "Adapt kubeconfig"
+  ansible.builtin.lineinfile:
+    path: /tmp/{{ inventory_hostname }}.kube.config
+    regexp: '^    server: https://.*'
+    line: '    server: https://{{ ansible_ssh_host }}:6443'
+  delegate_to: "localhost"
+  tags:
+    - "k3s"
+    - "devel"
 ...

@@ -1,7 +1,0 @@
----
-# roles/podman/requirements.yml
-
-collections: []
-
-roles: []
-...
