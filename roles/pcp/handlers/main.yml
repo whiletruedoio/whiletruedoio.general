@@ -1,0 +1,17 @@
+---
+# roles/pcp/handlers/main.yml
+
+- name: "Restart pcp Services"
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: "restarted"
+  become: true
+  loop: "{{ pcp_service_names }}"
+  when:
+    - "pcp_package_state != 'absent'"
+  tags:
+    - "pcp"
+    - "package"
+    - "configuration"
+    - "service"
+...

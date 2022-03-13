@@ -1,0 +1,25 @@
+---
+# roles/pcp/defaults/main.yml
+
+## Package Management
+
+pcp_package_names: "pcp"
+pcp_package_state: "present"
+
+## Service Management
+
+pcp_service_names:
+  - "pmcd.service"
+  - "pmlogger.service"
+pcp_service_state: "started"
+pcp_service_enabled: true
+
+pcp_timer_names:
+  - ""
+pcp_timer_state: "started"
+pcp_timer_enabled: true
+
+## Checks
+
+pcp_checks_enabled: false
+...

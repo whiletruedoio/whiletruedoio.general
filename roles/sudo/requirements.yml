@@ -1,0 +1,8 @@
+---
+# roles/sudo/requirements.yml
+
+collections:
+  - name: "ansible.posix"
+
+roles: []
+...

@@ -1,0 +1,17 @@
+---
+# roles/sudo/tasks/check.yml
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "sudo"
+    - "firewall"
+
+- name: "Check sudo"
+  ansible.builtin.assert:
+    that: false
+  tags:
+    - "sudo"
+    - "check"
+...

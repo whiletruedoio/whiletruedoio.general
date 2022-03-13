@@ -104,6 +104,20 @@
 
 ## Firewall Management
 
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "k3s"
+    - "firewall"
+
+- name: "Gather service Facts"
+  ansible.builtin.service_facts:
+    manager: "auto"
+  tags:
+    - "k3s"
+    - "firewall"
+
 - name: "Manage k3s Firewall Policy"
   ansible.posix.firewalld:
     port: "{{ k3s_api_firewall_port }}"
@@ -114,6 +128,7 @@
   become: true
   when:
     - "'firewalld' in ansible_facts.packages"
+    - "ansible_facts['services']['firewalld.service']['state'] == 'running'"
   tags:
     - "k3s"
     - "firewall"
@@ -128,6 +143,7 @@
   become: true
   when:
     - "'firewalld' in ansible_facts.packages"
+    - "ansible_facts['services']['firewalld.service']['state'] == 'running'"
   tags:
     - "k3s"
     - "firewall"

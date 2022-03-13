@@ -1,0 +1,16 @@
+---
+# roles/sudo/handlers/main.yml
+
+- name: "Restart sudo Service"
+  ansible.builtin.service:
+    name: "{{ sudo_service_name }}"
+    state: "restarted"
+  become: true
+  when:
+    - "sudo_package_state != 'absent'"
+  tags:
+    - "sudo"
+    - "package"
+    - "configuration"
+    - "service"
+...

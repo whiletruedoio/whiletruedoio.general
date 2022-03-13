@@ -1,0 +1,34 @@
+---
+# roles/sudo/defaults/main.yml
+
+## Package Management
+
+sudo_package_names: ""
+sudo_package_state: "present"
+
+## Configuration Management
+
+sudo_config_src: ""
+sudo_config_dest: ""
+sudo_config_owner: ""
+sudo_config_group: ""
+sudo_config_mode: ""
+
+## Service Management
+
+sudo_service_name: ""
+sudo_service_state: "started"
+sudo_service_enabled: true
+
+## Firewall Management
+
+sudo_firewall_service: ""
+sudo_firewall_state: "enabled"
+# sudo_firewall_zone: ""
+sudo_firewall_immediate: true
+sudo_firewall_permanent: true
+
+## Checks
+
+sudo_checks_enabled: false
+...

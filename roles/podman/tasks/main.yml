@@ -1,0 +1,75 @@
+---
+# roles/podman/tasks/main.yml
+
+## Package Management
+
+- name: "Manage podman Packages"
+  ansible.builtin.package:
+    name: "{{ podman_package_names }}"
+    state: "{{ podman_package_state }}"
+  become: true
+  notify:
+    - "Restart podman Service"
+  tags:
+    - "podman"
+    - "package"
+
+## Configuration Management
+
+- name: "Manage podman Configuration"
+  ansible.builtin.template:
+    src: "{{ podman_config_src }}"
+    dest: "{{ podman_config_dest }}"
+    owner: "{{ podman_config_owner }}"
+    group: "{{ podman_config_group }}"
+    mode: "{{ podman_config_mode }}"
+  become: true
+  notify:
+    - "Restart podman Service"
+  tags:
+    - "podman"
+    - "configuration"
+
+## Service Management
+
+- name: "Manage podman Services"
+  ansible.builtin.service:
+    name: "{{ podman_service_name }}"
+    state: "{{ podman_service_state }}"
+    enabled: "{{ podman_service_enabled }}"
+  become: true
+  when:
+    - "podman_package_state != 'absent'"
+  tags:
+    - "podman"
+    - "package"
+
+## Firewall Management
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+
+- name: "Manage podman Firewall Policy"
+  ansible.posix.firewalld:
+    service: "{{ podman_firewall_service }}"
+    state: "{{ podman_firewall_state }}"
+    zone: "{{ podman_firewall_zone }}"
+    immediate: "{{ podman_firewall_immediate }}"
+    permanent: "{{ podman_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+  tags:
+    - "podman"
+    - "firewall"
+
+## Checks
+
+- name: "Import Checks for podman"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "podman_checks_enabled | bool"
+  tags:
+    - "podman"
+    - "check"
+...

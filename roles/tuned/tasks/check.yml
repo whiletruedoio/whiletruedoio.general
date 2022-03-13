@@ -1,0 +1,10 @@
+---
+# roles/tuned/tasks/check.yml
+
+- name: "Check tuned"
+  ansible.builtin.assert:
+    that: false
+  tags:
+    - "tuned"
+    - "check"
+...

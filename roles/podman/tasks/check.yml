@@ -1,0 +1,10 @@
+---
+# roles/podman/tasks/check.yml
+
+- name: "Check podman"
+  ansible.builtin.assert:
+    that: false
+  tags:
+    - "podman"
+    - "check"
+...
