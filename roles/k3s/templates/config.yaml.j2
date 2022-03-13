@@ -1,0 +1,14 @@
+---
+write-kubeconfig-mode: "0644"
+
+{% if k3s_type == 'initial' %}
+cluster-init: true
+{% endif %}
+node-name: "{{ k3s_node_name }}"
+{% if k3s_token != '' %}
+token: {{ k3s_token }}
+{% endif %}
+{% if k3s_agent_token != '' %}
+agent-token: {{ k3s_agent_token }}
+{% endif %}
+...
