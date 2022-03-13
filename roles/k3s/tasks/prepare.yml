@@ -78,24 +78,9 @@
 - name: "Gather package Facts"
   ansible.builtin.package_facts:
     manager: "auto"
-
-- name: "Manage k3s Firewall Policy"
-  ansible.posix.firewalld:
-    port: ""
-    state: "{{ k3s_firewall_state }}"
-    zone: "{{ k3s_firewall_zone | default(omit) }}"
-    immediate: "{{ k3s_firewall_immediate }}"
-    permanent: "{{ k3s_firewall_permanent }}"
-  become: true
-  when:
-    - "'firewalld' in ansible_facts.packages"
-  loop:
-    - "2379/tcp"
-    - "6443/tcp"
   tags:
     - "k3s"
     - "prepare"
-    - "firewall"
 
 - name: "Manage nm-cloud-setup Services"
   ansible.builtin.service:
