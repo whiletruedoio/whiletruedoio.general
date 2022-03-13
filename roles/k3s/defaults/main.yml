@@ -30,5 +30,5 @@ k3s_etcd_firewall_permanent: true
 
 ## Checks
 
-k3s_check_enabled: false
+k3s_checks_enabled: false
 ...
