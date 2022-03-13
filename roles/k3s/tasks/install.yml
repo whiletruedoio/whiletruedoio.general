@@ -113,7 +113,6 @@
 
 - name: "Gather service Facts"
   ansible.builtin.service_facts:
-    manager: "auto"
   tags:
     - "k3s"
     - "firewall"
