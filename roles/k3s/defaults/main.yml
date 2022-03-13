@@ -14,6 +14,20 @@ k3s_node_name: "{{ inventory_hostname }}"
 k3s_token: ""
 k3s_agent_token: ""
 
+## Firewall Management
+
+k3s_api_firewall_port: "6443"
+k3s_api_firewall_state: "enabled"
+k3s_api_firewall_zone: "public"
+k3s_api_firewall_immediate: true
+k3s_api_firewall_permanent: true
+
+k3s_etcd_firewall_port: "2379"
+k3s_etcd_firewall_state: "enabled"
+k3s_etcd_firewall_zone: "public"
+k3s_etcd_firewall_immediate: true
+k3s_etcd_firewall_permanent: true
+
 ## Checks
 
 k3s_check_enabled: false

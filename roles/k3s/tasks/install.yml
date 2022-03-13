@@ -101,4 +101,34 @@
     - "k3s"
     - "install"
     - "service"
+
+## Firewall Management
+
+- name: "Manage k3s Firewall Policy"
+  ansible.posix.firewalld:
+    port: "{{ k3s_api_firewall_port }}"
+    state: "{{ k3s_api_firewall_state }}"
+    zone: "{{ k3s_api_firewall_zone }}"
+    immediate: "{{ k3s_api_firewall_immediate }}"
+    permanent: "{{ k3s_api_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+  tags:
+    - "k3s"
+    - "firewall"
+
+- name: "Manage k3s etcd Firewall Policy"
+  ansible.posix.firewalld:
+    port: "{{ k3s_etcd_firewall_port }}"
+    state: "{{ k3s_etcd_firewall_state }}"
+    zone: "{{ k3s_etcd_firewall_zone }}"
+    immediate: "{{ k3s_etcd_firewall_immediate }}"
+    permanent: "{{ k3s_etcd_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+  tags:
+    - "k3s"
+    - "firewall"
 ...
