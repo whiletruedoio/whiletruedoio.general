@@ -1,0 +1,5 @@
+---
+# roles/cockpit/meta/main.yml
+
+dependencies: []
+...

@@ -1,0 +1,9 @@
+---
+# roles/k3s/requirements.yml
+
+collections:
+  - "ansible.posix"
+  - "community.general"
+
+roles: []
+...

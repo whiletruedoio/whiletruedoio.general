@@ -1,0 +1,18 @@
+---
+# roles/cockpit/tasks/check.yml
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "cockpit"
+    - "check"
+
+- name: "Check cockpit"
+  ansible.builtin.assert:
+    that:
+      - "'cockpit' in ansible_facts.packages"
+  tags:
+    - "cockpit"
+    - "check"
+...

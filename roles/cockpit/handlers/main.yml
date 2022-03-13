@@ -1,0 +1,16 @@
+---
+# roles/cockpit/handlers/main.yml
+
+- name: "Restart cockpit Service"
+  ansible.builtin.service:
+    name: "{{ cockpit_service_name }}"
+    state: "restarted"
+  become: true
+  when:
+    - "cockpit_package_state != 'absent'"
+  tags:
+    - "cockpit"
+    - "package"
+    - "configuration"
+    - "service"
+...

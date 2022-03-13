@@ -1,0 +1,8 @@
+---
+# roles/cockpit/requirements.yml
+
+collections:
+  - "ansible.posix"
+
+roles: []
+...

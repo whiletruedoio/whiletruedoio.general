@@ -1,0 +1,31 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Lightweight Kubernetes
+Documentation=https://k3s.io
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+EnvironmentFile=-/etc/default/%N
+EnvironmentFile=-/etc/sysconfig/%N
+
+ExecStartPre=-/sbin/modprobe br_netfilter
+ExecStartPre=-/sbin/modprobe overlay
+
+ExecStart=/usr/local/bin/k3s server
+
+KillMode=process
+Delegate=yes
+
+LimitNOFILE=1048576
+LimitNPROC=infinity
+LimitCORE=infinity
+TasksMax=infinity
+TimeoutStartSec=0
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

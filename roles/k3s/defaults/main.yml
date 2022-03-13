@@ -1,0 +1,20 @@
+---
+# roles/k3s/defaults/main.yml
+
+## Binary Management
+
+k3s_binary_version: "v1.21.2+k3s1"
+
+## Configuration Management
+
+### k3s type can be initial or server
+k3s_type: "initial"
+k3s_node_name: "{{ inventory_hostname }}"
+
+k3s_token: ""
+k3s_agent_token: ""
+
+## Checks
+
+k3s_check_enabled: false
+...

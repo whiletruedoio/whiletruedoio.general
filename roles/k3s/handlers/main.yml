@@ -1,0 +1,16 @@
+---
+# roles/k3s/handlers/main.yml
+
+- name: "Restart k3s Service"
+  ansible.builtin.service:
+    name: "{{ k3s_service_name }}"
+    state: "restarted"
+  become: true
+  when:
+    - "k3s_package_state != 'absent'"
+  tags:
+    - "k3s"
+    - "package"
+    - "configuration"
+    - "service"
+...

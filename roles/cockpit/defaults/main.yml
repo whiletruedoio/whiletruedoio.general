@@ -1,0 +1,39 @@
+---
+# roles/cockpit/defaults/main.yml
+
+## Package Management
+
+cockpit_base_package_names:
+  - "cockpit"
+  - "cockpit-networkmanager"
+  - "cockpit-storaged"
+  - "cockpit-sosreport"
+cockpit_base_package_state: "present"
+
+### Auto Install packages to support installed software
+### Currently supported:
+### - cockpit-podman
+### - cockpit-selinux
+### - cockpit-pcp
+### - cockpit-kdump
+### - cockpit-machines
+cockpit_additional_packages_enabled: true
+
+## Service Management
+
+cockpit_service_name: "cockpit.socket"
+cockpit_service_state: "started"
+cockpit_service_enabled: true
+
+## Firewall Management
+
+cockpit_firewall_service: "cockpit"
+cockpit_firewall_state: "enabled"
+# cockpit_firewall_zone: ""
+cockpit_firewall_immediate: true
+cockpit_firewall_permanent: true
+
+## Checks
+
+cockpit_checks_enabled: false
+...

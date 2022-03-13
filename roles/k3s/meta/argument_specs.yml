@@ -1,0 +1,27 @@
+---
+# roles/k3s/meta/argument_specs.yml
+# reference: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#role-argument-validation
+
+argument_specs:
+  # roles/k3s/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for k3s."
+    options:
+      k3s_package_names:
+        description: "Define the package names."
+        type: "list"
+        elements: "str"
+        default: []
+      k3s_package_state:
+        description: "Define the package state."
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "present"
+      k3s_checks_enabled:
+        description: "Define if checks should run.
+        type: "bool"
+        default: false
+...

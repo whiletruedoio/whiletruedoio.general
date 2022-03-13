@@ -1,0 +1,22 @@
+---
+# roles/k3s/tasks/main.yml
+
+- name: "Import prepare Tasks"
+  ansible.builtin.import_tasks: "prepare.yml"
+
+- name: "Import install Tasks"
+  ansible.builtin.import_tasks: "install.yml"
+
+- name: "Import devel Tasks"
+  ansible.builtin.import_tasks: "devel.yml"
+
+## Checks
+
+- name: "Import check Tasks"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "k3s_checks_enabled | bool"
+  tags:
+    - "k3s"
+    - "check"
+...

@@ -1,0 +1,114 @@
+---
+# roles/k3s/tasks/prepare.yml
+
+- name: "Install Dependencies"
+  ansible.builtin.dnf:
+    name:
+      - "container-selinux"
+      - "selinux-policy-base"
+    state: "present"
+  become: true
+  tags:
+    - "k3s"
+    - "prepare"
+    - "package"
+
+- name: "Install k3s SELinux"
+  ansible.builtin.dnf:
+    name: "https://rpm.rancher.io/k3s/latest/common/centos/7/noarch/k3s-selinux-0.2-1.el7_8.noarch.rpm"
+    disable_gpg_check: true
+    state: "present"
+  become: true
+  tags:
+    - "k3s"
+    - "prepare"
+    - "package"
+
+- name: "Manage br_netfilter Module File"
+  ansible.builtin.copy:
+    dest: "/etc/modules-load.d/br_netfilter.conf"
+    content: "br_netfilter"
+    mode: "u=rw,g=,o="
+  become: true
+  tags:
+    - "k3s"
+    - "prepare"
+    - "configuration"
+
+- name: "Load br_netfilter Module"
+  community.general.modprobe:
+    name: "br_netfilter"
+    state: "present"
+  become: true
+  tags:
+    - "k3s"
+    - "prepare"
+    - "configuration"
+
+- name: "Manage bridge-nf-call-iptables Sysctl"
+  ansible.builtin.sysctl:
+    name: "{{ item }}"
+    value: "1"
+    state: "present"
+    reload: true
+  become: true
+  loop:
+    - "net.bridge.bridge-nf-call-iptables"
+    - "net.bridge.bridge-nf-call-ip6tables"
+  tags:
+    - "k3s"
+    - "prepare"
+    - "configuration"
+
+- name: "Enable IP forwarding"
+  ansible.builtin.sysctl:
+    name: "{{ item }}"
+    value: 1
+    state: "present"
+    reload: true
+  become: true
+  loop:
+    - "net.ipv4.ip_forward"
+    - "net.ipv6.conf.all.forwarding"
+  tags:
+    - "k3s"
+    - "prepare"
+    - "configuration"
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+
+- name: "Manage k3s Firewall Policy"
+  ansible.posix.firewalld:
+    port: ""
+    state: "{{ k3s_firewall_state }}"
+    zone: "{{ k3s_firewall_zone | default(omit) }}"
+    immediate: "{{ k3s_firewall_immediate }}"
+    permanent: "{{ k3s_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+  loop:
+    - "2379/tcp"
+    - "6443/tcp"
+  tags:
+    - "k3s"
+    - "prepare"
+    - "firewall"
+
+- name: "Manage nm-cloud-setup Services"
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: "stopped"
+    enabled: false
+  become: true
+  when:
+    - "'NetworkManager-cloud-setup' in ansible_facts.packages"
+  loop:
+    - "nm-cloud-setup.service"
+    - "nm-cloud-setup.timer"
+  tags:
+    - "k3s"
+    - "prepare"
+...

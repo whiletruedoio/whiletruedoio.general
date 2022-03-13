@@ -7,12 +7,13 @@
   ansible.builtin.import_tasks: "user.yml"
   loop: "{{ user_users }}"
   loop_control:
-    loop_var: "l_user"
-    label: "{{ l_user.username }}"
+    loop_var: "user"
+    label: "{{ user.username }}"
   when:
     - "user_users is defined"
     - "user_users | length > 0"
   tags:
     - "user"
+    - "sudo"
     - "key"
 ...

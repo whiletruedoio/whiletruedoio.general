@@ -36,4 +36,17 @@
     - name: "Import ssh Role"
       ansible.builtin.import_role:
         name: "whiletruedoio.general.ssh"
+
+    - name: "Import user Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.user"
+      vars:
+        user_users:
+          - username: "admin"
+            groups:
+              - "wheel"
+            # password: password
+            password_hash: "$6$x.qGDTCdeViBtCwb$NNpBlMcpglRnJJSBU6TduvcqS4xTeKEsw5l41IZ519Nh62.0rDo4NXf.dHAI89.QnMW6I.pIn0LBjAVEOrTsM0"
+            passwordless_sudo: true
+            state: "present"
 ...

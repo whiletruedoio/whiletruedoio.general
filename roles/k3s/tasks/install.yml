@@ -1,0 +1,104 @@
+---
+# roles/k3s/tasks/install.yml
+
+## Binary Management
+
+- name: "Download k3s Binary"
+  ansible.builtin.get_url:
+    url: "https://github.com/k3s-io/k3s/releases/download/{{ k3s_version }}/k3s"
+    checksum: "sha256:https://github.com/k3s-io/k3s/releases/download/{{ k3s_version }}/sha256sum-amd64.txt"
+    dest: "/usr/local/bin/k3s"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  become: true
+  tags:
+    - "k3s"
+    - "install"
+    - "package"
+
+- name: "Manage kubectl symlink"
+  ansible.builtin.file:
+    src: "/usr/local/bin/k3s"
+    dest: "/usr/local/bin/kubectl"
+    state: "link"
+  become: true
+  tags:
+    - "k3s"
+    - "devel"
+
+- name: "Manage crictl symlink"
+  ansible.builtin.file:
+    src: "/usr/local/bin/k3s"
+    dest: "/usr/local/bin/crictl"
+    state: "link"
+  become: true
+  tags:
+    - "k3s"
+    - "devel"
+
+- name: "Manage ctr symlink"
+  ansible.builtin.file:
+    src: "/usr/local/bin/k3s"
+    dest: "/usr/local/bin/ctr"
+    state: "link"
+  become: true
+  tags:
+    - "k3s"
+    - "devel"
+
+## Configuration Management
+
+- name: "Manage k3s Configuration Directory"
+  ansible.builtin.file:
+    path: "/etc/rancher/k3s/"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  become: true
+  tags:
+    - "k3s"
+    - "install"
+    - "configuration"
+
+- name: "Manage k3s Configuration"
+  ansible.builtin.template:
+    src: "config.yaml.j2"
+    dest: "/etc/rancher/k3s/config.yaml"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  tags:
+    - "k3s"
+    - "install"
+    - "configuration"
+
+## Service Management
+
+- name: "Manage k3s Service Unit File"
+  ansible.builtin.template:
+    src: "k3s.service.j2"
+    dest: "/etc/systemd/system/k3s.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  tags:
+    - "k3s"
+    - "install"
+    - "service"
+
+- name: "Manage k3s Service"
+  ansible.builtin.systemd:
+    name: "k3s.service"
+    state: "started"
+    enabled: true
+    daemon_reload: true
+  become: true
+  tags:
+    - "k3s"
+    - "install"
+    - "service"
+...

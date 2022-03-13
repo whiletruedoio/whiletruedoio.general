@@ -1,0 +1,13 @@
+---
+# roles/k3s/tasks/devel.yml
+
+- name: "Fetch kubeconfig"
+  ansible.builtin.fetch:
+    src: "/etc/rancher/k3s/k3s.yaml"
+    dest: "/tmp/{{ inventory_hostname }}.kube.config"
+    flat: true
+  become: true
+  tags:
+    - "k3s"
+    - "devel"
+...

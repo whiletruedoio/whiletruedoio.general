@@ -26,6 +26,8 @@ This is the changelog of
 - Added: thermald role
 - Added: user role
 - Added: avahi role
+- Added: Cockpit Role
+- Added: k3s role
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

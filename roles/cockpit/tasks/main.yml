@@ -1,0 +1,129 @@
+---
+# roles/cockpit/tasks/main.yml
+
+## Package Management
+
+- name: "Manage cockpit Base Packages"
+  ansible.builtin.package:
+    name: "{{ cockpit_package_names }}"
+    state: "{{ cockpit_package_state }}"
+  become: true
+  notify:
+    - "Restart cockpit Service"
+  tags:
+    - "cockpit"
+    - "package"
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "cockpit"
+    - "package"
+    - "firewall"
+
+- name: "Manage cockpit-selinux Package"
+  ansible.builtin.package:
+    name: "cockpit-selinux"
+    state: "present"
+  become: true
+  when:
+    - "'libselinux' in ansible_facts.packages"
+    - "cockpit_additional_packages_enabled | bool"
+  tags:
+    - "cockpit"
+    - "package"
+    - "selinux"
+
+- name: "Manage cockpit-kdump Package"
+  ansible.builtin.package:
+    name: "cockpit-kdump"
+    state: "present"
+  become: true
+  when:
+    - "'kdump' in ansible_facts.packages"
+    - "cockpit_additional_packages_enabled | bool"
+  tags:
+    - "cockpit"
+    - "package"
+    - "selinux"
+
+- name: "Manage cockpit-podman Package"
+  ansible.builtin.package:
+    name: "cockpit-podman"
+    state: "present"
+  become: true
+  when:
+    - "'podman' in ansible_facts.packages"
+    - "cockpit_additional_packages_enabled | bool"
+  tags:
+    - "cockpit"
+    - "package"
+    - "podman"
+
+- name: "Manage cockpit-machines Package"
+  ansible.builtin.package:
+    name: "cockpit-machines"
+    state: "present"
+  become: true
+  when:
+    - "'qemu-kvm' in ansible_facts.packages"
+    - "cockpit_additional_packages_enabled | bool"
+  tags:
+    - "cockpit"
+    - "package"
+    - "kvm"
+
+- name: "Manage cockpit-pcp Package"
+  ansible.builtin.package:
+    name: "cockpit-pcp"
+    state: "present"
+  become: true
+  when:
+    - "'pcp' in ansible_facts.packages"
+    - "cockpit_additional_packages_enabled | bool"
+  tags:
+    - "cockpit"
+    - "package"
+    - "pcp"
+
+## Service Management
+
+- name: "Manage cockpit Service"
+  ansible.builtin.service:
+    name: "{{ cockpit_service_name }}"
+    state: "{{ cockpit_service_state }}"
+    enabled: "{{ cockpit_service_enabled }}"
+  become: true
+  when:
+    - "cockpit_package_state != 'absent'"
+  tags:
+    - "cockpit"
+    - "service"
+
+## Firewall Management
+
+- name: "Manage cockpit Firewall Policy"
+  ansible.posix.firewalld:
+    service: "{{ cockpit_firewall_service }}"
+    state: "{{ cockpit_firewall_state }}"
+    zone: "{{ cockpit_firewall_zone }}"
+    immediate: "{{ cockpit_firewall_immediate }}"
+    permanent: "{{ cockpit_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+  tags:
+    - "cockpit"
+    - "firewall"
+
+## Checks
+
+- name: "Import Checks for cockpit"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "cockpit_checks_enabled | bool"
+  tags:
+    - "cockpit"
+    - "check"
+...

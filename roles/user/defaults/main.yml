@@ -9,6 +9,7 @@ user_users: []
 #     - ""
 #   password_hash: ""
 #   password_update: "always"
+#   passwordless_sudo: false
 #   uid: ""
 #   shell: ""
 #   home: ""
@@ -16,8 +17,8 @@ user_users: []
 #   state: "present"
 #   auth_keys:
 #     - key: ""
-#       state: ""
-#       exclusive: ""
+#       state: "present"
+#       exclusive: "false"
 
 ## Checks
 

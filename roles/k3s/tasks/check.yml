@@ -1,0 +1,19 @@
+---
+# roles/k3s/tasks/check.yml
+
+- name: "Check for kube-api"
+  ansible.builtin.wait_for:
+    port: 6443
+    timeout: 120
+  tags:
+    - "k3s"
+    - "check"
+
+- name: "Check for etcd"
+  ansible.builtin.wait_for:
+    port: 2379
+    timeout: 120
+  tags:
+    - "k3s"
+    - "check"
+...
