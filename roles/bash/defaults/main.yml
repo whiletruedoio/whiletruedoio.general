@@ -1,6 +1,8 @@
 ---
 # roles/bash/defaults/main.yml
 
+## Package Management
+
 bash_package_names:
   - "bash"
   - "bash-completion"
@@ -11,14 +13,17 @@ bash_scripting_package_names:
   - "bats"
 bash_scripting_package_state: "present"
 
+## Powerline
+
 bash_powerline_package_names:
   - "powerline-go"
 bash_powerline_package_state: "present"
 
-## Configuration Management
+bash_powerline_system_enabled: true
+
+## Dotfile
 
 bash_dotfiles_system_enabled: true
-bash_powerline_system_enabled: true
 
 ## Checks
 
