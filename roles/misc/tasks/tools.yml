@@ -6,30 +6,33 @@
 - name: "Manage editor Packages"
   ansible.builtin.package:
     name: "{{ misc_editor_package_names }}"
-    state: "present"
+    state: "{{ misc_editor_package_state }}"
   become: true
   tags:
     - "misc"
+    - "tools"
     - "editor"
     - "package"
 
 - name: "Manage other Packages"
   ansible.builtin.package:
     name: "{{ misc_other_package_names }}"
-    state: "present"
+    state: "{{ misc_other_package_state }}"
   become: true
   tags:
     - "misc"
+    - "tools"
     - "other"
     - "package"
 
 - name: "Manage utility Packages"
   ansible.builtin.package:
     name: "{{ misc_utility_package_names }}"
-    state: "present"
+    state: "{{ misc_utility_package_state }}"
   become: true
   tags:
     - "misc"
+    - "tools"
     - "utility"
     - "package"
 ...

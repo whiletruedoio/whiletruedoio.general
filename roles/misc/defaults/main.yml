@@ -1,7 +1,23 @@
 ---
 # roles/misc/defaults/main.yml
 
-## Package Management
+## Hostname
+
+misc_hostname_enabled: true
+misc_hostname: "{{ inventory_hostname }}"
+
+## Machine ID
+
+misc_machine_id_enabled: true
+
+## Timezone
+
+misc_timezone_enabled: true
+misc_timezone: "Etc/UTC"
+
+## Tools
+
+misc_tools_enabled: true
 
 misc_editor_package_names:
   - "micro"
@@ -12,7 +28,7 @@ misc_editor_package_state: "present"
 misc_other_package_names:
   - "fortune-mod"
   - "screenfetch"
-misc_other_package_state: "absent"
+misc_other_package_state: "present"
 
 misc_utility_package_names:
   - "curl"
@@ -20,9 +36,4 @@ misc_utility_package_names:
   - "nmap"
   - "tmux"
 misc_utility_package_state: "present"
-
-## Configuration Management
-
-misc_hostname: "{{ inventory_hostname }}"
-misc_timezone: "Etc/UTC"
 ...

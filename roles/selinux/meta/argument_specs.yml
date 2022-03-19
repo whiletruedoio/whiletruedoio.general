@@ -6,6 +6,7 @@ argument_specs:
   main:
     short_description: "The main entrypoint for selinux."
     options:
+      ## Package Management
       selinux_package_names:
         type: "list"
         elements: "str"
@@ -22,6 +23,7 @@ argument_specs:
           - "latest"
         default: "present"
         description: "Define the package state."
+      ## Configuration Management
       selinux_config_policy:
         type: "str"
         default: "targeted"
@@ -34,8 +36,14 @@ argument_specs:
           - "permissive"
         default: "enforcing"
         description: "Define the selinux state."
+      ## System Management
       selinux_system_reboot_enabled:
         type: "bool"
         default: true
         description: "Define if the system should automatically reboot."
+      ## Checks
+      selinux_checks_enabled:
+        type: "bool"
+        default: false
+        description: "Define if checks should be done."
 ...

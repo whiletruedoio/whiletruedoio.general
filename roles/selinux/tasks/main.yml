@@ -30,7 +30,7 @@
     var: "r_selinux_config"
     verbosity: 1
 
-## System Configuration
+## System Management
 
 - name: "Reboot system"
   ansible.builtin.reboot:

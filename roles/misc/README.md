@@ -83,7 +83,7 @@ Just run all tasks from the role.
 
 #### Advanced Example
 
-Only use the timezone tasks from the role.
+Disable the tools tasks from the role.
 
 ```yaml
 ---
@@ -95,7 +95,8 @@ Only use the timezone tasks from the role.
     - name: "Import timezone tasks misc Role"
       ansible.builtin.import_role:
         name: "whiletruedoio.general.misc"
-        tasks_from: "timezone"
+      vars:
+        misc_tools_enabled: false
 ...
 ```
 

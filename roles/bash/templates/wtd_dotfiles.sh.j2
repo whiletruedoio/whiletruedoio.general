@@ -8,8 +8,8 @@
 
 # dotfiles
 # Reference: https://github.com/dschier-wtd/.dotfiles
-if [ -e "${HOME}"/.dotfiles/system/ ]; then
-    for file in "${HOME}"/.dotfiles/system/*; do
+if [ -e "${HOME}"/.dotfiles/config/bash/ ]; then
+    for file in "${HOME}"/.dotfiles/config/bash/*; do
         # shellcheck source=/dev/null
         source "${file}"
     done

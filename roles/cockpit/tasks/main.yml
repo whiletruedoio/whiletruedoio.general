@@ -107,7 +107,7 @@
   ansible.posix.firewalld:
     service: "{{ cockpit_firewall_service }}"
     state: "{{ cockpit_firewall_state }}"
-    zone: "{{ cockpit_firewall_zone }}"
+    zone: "{{ cockpit_firewall_zone | default(omit) }}"
     immediate: "{{ cockpit_firewall_immediate }}"
     permanent: "{{ cockpit_firewall_permanent }}"
   become: true

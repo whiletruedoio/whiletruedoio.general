@@ -9,14 +9,15 @@
 # Powerline-Go
 # Reference: https://github.com/justjanne/powerline-go
 
-if [ -f "${GOPATH}"/bin/powerline-go ]; then
+if [ -f "${GOPATH}"/bin/powerline-go ]
+then
     function _update_ps1() {
 
         PS1=$("${GOPATH}"/bin/powerline-go -error $? -cwd-max-depth 3 -hostname-only-if-ssh -jobs "$(jobs -p | wc -l)")
-        set "?"
     }
 
-    if [ "${TERM}" != "linux" ] && [ -f "${GOPATH}/bin/powerline-go" ]; then
+    if [ "${TERM}" != "linux" ]
+    then
         PROMPT_COMMAND="_update_ps1; ${PROMPT_COMMAND}"
     fi
 fi

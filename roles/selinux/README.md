@@ -73,7 +73,7 @@ A simple example, using the defaults (packages installed and SELinux enforcing).
 
 #### Advanced Example
 
-A more advanced example, that set the policy to permissive.
+A more advanced example, that sets the policy to permissive.
 
 ```yaml
 ---

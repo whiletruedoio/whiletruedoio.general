@@ -3,13 +3,40 @@
 
 - name: "Import hostname Tasks"
   ansible.builtin.import_tasks: "hostname.yml"
+  when:
+    - "misc_hostname_enabled | bool"
+  tags:
+    - "misc"
+    - "hostname"
+    - "configuration"
 
 - name: "Import machine_id Tasks"
   ansible.builtin.import_tasks: "machine_id.yml"
+  when:
+    - "misc_machine_id_enabled | bool"
+  tags:
+    - "misc"
+    - "machine_id"
+    - "configuration"
 
 - name: "Import timezone Tasks"
   ansible.builtin.import_tasks: "timezone.yml"
+  when:
+    - "misc_timezone_enabled | bool"
+  tags:
+    - "misc"
+    - "timezone"
+    - "configuration"
 
 - name: "Import tools Tasks"
   ansible.builtin.import_tasks: "tools.yml"
+  when:
+    - "misc_tools_enabled | bool"
+  tags:
+    - "misc"
+    - "package"
+    - "tools"
+    - "editor"
+    - "utility"
+    - "other"
 ...
