@@ -1,0 +1,18 @@
+---
+# roles/bash/tasks/dotfiles.yml
+
+- name: "Manage bash dotfiles Configuration"
+  ansible.builtin.template:
+    src: "wtd_dotfiles.sh.j2"
+    dest: "/etc/profile.d/wtd_dotfiles.sh"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  when:
+    - "bash_dotfiles_system_enabled | bool"
+  tags:
+    - "bash"
+    - "dotfiles"
+    - "package"
+...

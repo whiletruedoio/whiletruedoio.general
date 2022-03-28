@@ -13,16 +13,25 @@ bash_scripting_package_names:
   - "bats"
 bash_scripting_package_state: "present"
 
-## Powerline
+## Powerline-Go Prompt
 
+bash_powerline_enabled: true
 bash_powerline_package_names:
   - "powerline-go"
 bash_powerline_package_state: "present"
-
 bash_powerline_system_enabled: true
 
-## Dotfile
+## Starship Prompt
 
+bash_starship_enabled: false
+bash_starship_package_names:
+  - "starship"
+bash_starship_package_state: "present"
+bash_starship_system_enabled: true
+
+## Dotfiles
+
+bash_dotfiles_enabled: true
 bash_dotfiles_system_enabled: true
 
 ## Checks

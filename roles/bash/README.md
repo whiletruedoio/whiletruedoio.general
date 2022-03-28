@@ -78,7 +78,7 @@ Use the defaults of the role and install/configure all tools.
 
 #### Advanced Example
 
-Use the defaults of the role and install/configure all tools.
+Skip the powerline tasks.
 
 ```yaml
 ---
@@ -91,8 +91,7 @@ Use the defaults of the role and install/configure all tools.
       ansible.builtin.import_role:
         name: "whiletruedoio.general.bash"
       vars:
-        bash_dotfiles_system_enabled: false
-        bash_powerline_system_enabled: false
+        bash_powerline_enabled: false
 ...
 ```
 

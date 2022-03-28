@@ -1,0 +1,28 @@
+---
+# roles/bash/tasks/powerline.yml
+
+- name: "Manage bash powerline Packages"
+  ansible.builtin.package:
+    name: "{{ bash_powerline_package_names }}"
+    state: "{{ bash_powerline_package_state }}"
+  become: true
+  tags:
+    - "bash"
+    - "powerline"
+    - "package"
+
+- name: "Manage bash powerline Configuration"
+  ansible.builtin.template:
+    src: "wtd_powerline.sh.j2"
+    dest: "/etc/profile.d/wtd_powerline.sh"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  when:
+    - "bash_powerline_system_enabled | bool"
+  tags:
+    - "bash"
+    - "powerline"
+    - "package"
+...
