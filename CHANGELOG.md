@@ -28,6 +28,7 @@ This is the changelog of
 - Added: avahi role
 - Added: Cockpit Role
 - Added: k3s role
+- Added: Starship prompt to bash
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
