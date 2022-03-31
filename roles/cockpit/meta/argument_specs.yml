@@ -24,7 +24,7 @@ argument_specs:
           - "latest"
         default: "present"
       cockpit_checks_enabled:
-        description: "Define if checks should run.
+        description: "Define if checks should run."
         type: "bool"
         default: false
 ...

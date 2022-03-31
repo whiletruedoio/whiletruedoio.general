@@ -1,6 +1,5 @@
 ---
 # roles/k3s/meta/argument_specs.yml
-# reference: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#role-argument-validation
 
 argument_specs:
   # roles/k3s/tasks/main.yml entry point

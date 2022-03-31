@@ -1,0 +1,22 @@
+---
+# roles/bash/tasks/bash.yml
+
+- name: "Manage bash Packages"
+  ansible.builtin.package:
+    name: "{{ bash_package_names }}"
+    state: "{{ bash_package_state }}"
+  become: true
+  tags:
+    - "bash"
+    - "package"
+
+- name: "Manage bash scripting Packages"
+  ansible.builtin.package:
+    name: "{{ bash_scripting_package_names }}"
+    state: "{{ bash_scripting_package_state }}"
+  become: true
+  tags:
+    - "bash"
+    - "package"
+    - "development"
+...

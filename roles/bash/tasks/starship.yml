@@ -1,0 +1,13 @@
+---
+# roles/bash/tasks/starship.yml
+
+- name: "Manage starship Packages"
+  ansible.builtin.package:
+    name: "{{ bash_starship_package_names }}"
+    state: "{{ bash_starship_package_state }}"
+  become: true
+  tags:
+    - "bash"
+    - "package"
+    - "starship"
+...

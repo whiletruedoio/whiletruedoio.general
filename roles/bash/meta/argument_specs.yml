@@ -12,7 +12,7 @@ argument_specs:
         default:
           - "bash"
           - "bash-completion"
-        description: "Define the package names"
+        description: "Define the package names."
       bash_package_state:
         type: "str"
         choices:
@@ -20,17 +20,21 @@ argument_specs:
           - "absent"
           - "latest"
         default: "present"
-        description: "Define the package state"
-      bash_dotfiles_system_enabled:
+        description: "Define the package state."
+      bash_dotfiles_enabled:
         type: "bool"
         default: true
-        description: "Define if dotfiles should be included for all users"
-      bash_powerline_system_enabled:
+        description: "Define if dotfiles tasks should be done."
+      bash_powerline_enabled:
         type: "bool"
         default: true
-        description: "Define if powerline-go should be enabled for all users"
+        description: "Define if powerline tasks should be done."
+      bash_starship_enabled:
+        type: "bool"
+        default: false
+        description: "Define if starship tasks should be done."
       bash_checks_enabled:
         type: "bool"
         default: false
-        description: "Define if checks should run"
+        description: "Define if checks should run."
 ...

@@ -1,68 +1,39 @@
 ---
 # roles/bash/tasks/main.yml
 
-## Package Management
+## Include tasks
 
-- name: "Manage bash Packages"
-  ansible.builtin.package:
-    name: "{{ bash_package_names }}"
-    state: "{{ bash_package_state }}"
-  become: true
-  tags:
-    - "bash"
-    - "package"
-
-- name: "Manage bash scripting Packages"
-  ansible.builtin.package:
-    name: "{{ bash_scripting_package_names }}"
-    state: "{{ bash_scripting_package_state }}"
-  become: true
+- name: "Import bash Tasks"
+  ansible.builtin.import_tasks: "bash.yml"
   tags:
     - "bash"
     - "package"
     - "development"
 
-- name: "Manage bash powerline Packages"
-  ansible.builtin.package:
-    name: "{{ bash_powerline_package_names }}"
-    state: "{{ bash_powerline_package_state }}"
-  become: true
-  tags:
-    - "bash"
-    - "powerline"
-    - "package"
-
-## Configuration Management
-
-- name: "Manage bash dotfiles Configuration"
-  ansible.builtin.template:
-    src: "wtd_dotfiles.sh.j2"
-    dest: "/etc/profile.d/wtd_dotfiles.sh"
-    owner: "root"
-    group: "root"
-    mode: 0644
-  become: true
+- name: "Import powerline Tasks"
+  ansible.builtin.import_tasks: "powerline.yml"
   when:
-    - "bash_dotfiles_system_enabled | bool"
+    - "bash_powerline_enabled | bool"
   tags:
     - "bash"
-    - "dotfiles"
     - "package"
+    - "configuration"
 
-- name: "Manage bash powerline Configuration"
-  ansible.builtin.template:
-    src: "wtd_powerline.sh.j2"
-    dest: "/etc/profile.d/wtd_powerline.sh"
-    owner: "root"
-    group: "root"
-    mode: 0644
-  become: true
+- name: "Import starship Tasks"
+  ansible.builtin.import_tasks: "starship.yml"
   when:
-    - "bash_powerline_system_enabled | bool"
+    - "bash_starship_enabled | bool"
   tags:
     - "bash"
-    - "powerline"
-    - "package"
+    - "configuration"
+
+- name: "Import dotfiles Tasks"
+  ansible.builtin.import_tasks: "dotfiles.yml"
+  when:
+    - "bash_dotfiles_enabled | bool"
+  tags:
+    - "bash"
+    - "configuration"
 
 ## Checks
 
