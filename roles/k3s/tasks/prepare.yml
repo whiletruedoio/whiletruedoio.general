@@ -15,6 +15,7 @@
 
 - name: "Install k3s SELinux"
   ansible.builtin.dnf:
+    # yamllint disable-line rule:line-length
     name: "https://rpm.rancher.io/k3s/latest/common/centos/7/noarch/k3s-selinux-0.2-1.el7_8.noarch.rpm"
     disable_gpg_check: true
     state: "present"

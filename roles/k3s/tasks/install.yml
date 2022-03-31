@@ -5,7 +5,9 @@
 
 - name: "Download k3s Binary"
   ansible.builtin.get_url:
+    # yamllint disable-line rule:line-length
     url: "https://github.com/k3s-io/k3s/releases/download/{{ k3s_binary_version }}/k3s"
+    # yamllint disable-line rule:line-length
     checksum: "sha256:https://github.com/k3s-io/k3s/releases/download/{{ k3s_binary_version }}/sha256sum-amd64.txt"
     dest: "/usr/local/bin/k3s"
     owner: "root"

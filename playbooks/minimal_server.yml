@@ -46,6 +46,7 @@
             groups:
               - "wheel"
             # password: password
+            # yamllint disable-line rule:line-length
             password_hash: "$6$x.qGDTCdeViBtCwb$NNpBlMcpglRnJJSBU6TduvcqS4xTeKEsw5l41IZ519Nh62.0rDo4NXf.dHAI89.QnMW6I.pIn0LBjAVEOrTsM0"
             passwordless_sudo: true
             state: "present"
