@@ -18,7 +18,7 @@ Plain ToDo file for whiletruedoio.general.
   - [x] sshd role
   - [ ] sudo role
   - [x] user role
-    - [ ] sudo-config per user
+    - [x] sudo-config per user
 
 - [ ] base server playbook
   - [ ] minimal server playbook
