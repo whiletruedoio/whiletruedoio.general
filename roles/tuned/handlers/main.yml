@@ -1,0 +1,13 @@
+---
+# roles/tuned/handlers/main.yml
+
+- name: "Restart tuned Service"
+  ansible.builtin.service:
+    name: "{{ tuned_service_name }}"
+    state: "restarted"
+  become: true
+  tags:
+    - "tuned"
+    - "package"
+    - "service"
+...
