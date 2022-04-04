@@ -25,12 +25,12 @@ Plain ToDo file for whiletruedoio.general.
   - [ ] kdump role
   - [ ] pcp role
   - [x] thermald role
-  - [ ] tuned role
-  - [ ] cockpit role
-    - [ ] selinux support
-    - [ ] pcp support
-    - [ ] package support
-    - [ ] kdump support
+  - [x] tuned role
+  - [x] cockpit role
+    - [x] selinux support
+    - [x] pcp support
+    - [x] package support
+    - [x] kdump support
 
 - [ ] home server playbook
   - [ ] base server playbook

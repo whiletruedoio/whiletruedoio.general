@@ -1,0 +1,39 @@
+---
+# roles/tuned/tasks/main.yml
+
+## Package Management
+
+- name: "Manage tuned Packages"
+  ansible.builtin.package:
+    name: "{{ tuned_package_names }}"
+    state: "{{ tuned_package_state }}"
+  become: true
+  notify:
+    - "Restart tuned Service"
+  tags:
+    - "tuned"
+    - "package"
+
+## Service Management
+
+- name: "Manage tuned Services"
+  ansible.builtin.service:
+    name: "{{ tuned_service_name }}"
+    state: "{{ tuned_service_state }}"
+  become: true
+  when:
+    - "tuned_package_state != 'absent'"
+  tags:
+    - "tuned"
+    - "service"
+
+## Check
+
+- name: "Import check Tasks"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "tuned_checks_enabled | bool"
+  tags:
+    - "tuned"
+    - "check"
+...

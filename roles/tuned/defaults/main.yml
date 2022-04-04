@@ -1,0 +1,19 @@
+---
+# roles/tuned/defaults/main.yml
+
+## Package Management
+
+tuned_package_names:
+  - "tuned"
+  - "tuned-utils"
+tuned_package_state: "present"
+
+## Service Management
+
+tuned_service_names: "tuned.service"
+tuned_service_state: "started"
+
+## Checks
+
+tuned_checks_enabled: false
+...

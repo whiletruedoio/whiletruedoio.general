@@ -1,0 +1,28 @@
+---
+# roles/tuned/meta/argument_specs.yml
+
+argument_specs:
+  # roles/tuned/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for tuned."
+    options:
+      tuned_package_names:
+        type: "list"
+        elements: "str"
+        default:
+          - "tuned"
+          - "tuned-plugins-core"
+        description: "Define the package names."
+      tuned_package_state:
+        type: "str"
+        choices:
+          - "present"
+          - "absent"
+          - "latest"
+        default: "present"
+        description: "Define the package state."
+      tuned_checks_enabled:
+        type: "bool"
+        default: false
+        description: "Define if checks should run."
+...

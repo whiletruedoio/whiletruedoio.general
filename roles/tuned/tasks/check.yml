@@ -1,18 +1,18 @@
 ---
-# roles/chrony/tasks/check.yml
+# roles/tuned/tasks/check.yml
 
 - name: "Gather package Facts"
   ansible.builtin.package_facts:
     manager: "auto"
   tags:
-    - "chrony"
+    - "tuned"
     - "check"
 
-- name: "Check chrony"
+- name: "Check tuned"
   ansible.builtin.assert:
     that:
-      - "'chrony' in ansible_facts.packages"
+      - "'tuned' in ansible_facts.packages"
   tags:
-    - "chrony"
+    - "tuned"
     - "check"
 ...

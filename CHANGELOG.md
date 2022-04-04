@@ -29,6 +29,7 @@ This is the changelog of
 - Added: Cockpit Role
 - Added: k3s role
 - Added: Starship prompt to bash
+- Added: tuned role
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
