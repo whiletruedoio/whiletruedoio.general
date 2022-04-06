@@ -16,7 +16,7 @@ Plain ToDo file for whiletruedoio.general.
   - [x] misc role
   - [x] selinux role
   - [x] sshd role
-  - [ ] sudo role
+  - [x] sudo role
   - [x] user role
     - [x] sudo-config per user
 

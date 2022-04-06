@@ -30,6 +30,8 @@ This is the changelog of
 - Added: k3s role
 - Added: Starship prompt to bash
 - Added: tuned role
+- Added: sudo role
+- Updated: user role to point to sudo role
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

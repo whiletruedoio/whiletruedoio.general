@@ -18,7 +18,7 @@
 
 - name: "Manage user sudo Configuration"
   ansible.builtin.template:
-    src: "sudoers_d_user.j2"
+    src: "sudoers.d.user.j2"
     dest: "/etc/sudoers.d/user_{{ user.username }}"
     owner: "root"
     group: "root"

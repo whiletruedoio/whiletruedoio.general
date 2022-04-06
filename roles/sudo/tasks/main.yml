@@ -1,0 +1,49 @@
+---
+# roles/sudo/tasks/main.yml
+
+## Package Management
+
+- name: "Manage sudo Packages"
+  ansible.builtin.package:
+    name: "{{ sudo_package_names }}"
+    state: "{{ sudo_package_state }}"
+  become: true
+  tags:
+    - "sudo"
+    - "package"
+
+## Configuration Management
+
+- name: "Manage sudoers.d Configuration"
+  template:
+    src: "sudoers.d.j2"
+    dest: "/etc/sudoers.d/{{ item.name }}"
+    mode: 0400
+    owner: "root"
+    group: "root"
+    validate: "visudo -cf %s"
+  loop: "{{ sudo_conf_sudoers }}"
+  become: true
+  when:
+    - "sudo_package_state != 'absent'"
+    - "sudo_conf_sudoers | length > 0"
+    - "item.type is defined"
+  tags:
+    - "sudo"
+    - "configuration"
+
+- name: "Manage sudoers Configuration"
+  template:
+    src: "sudoers.j2"
+    dest: "/etc/sudoers"
+    mode: 0400
+    owner: "root"
+    group: "root"
+    validate: "visudo -cf %s"
+  become: true
+  when:
+    - "sudo_package_state != 'absent'"
+  tags:
+    - "sudo"
+    - "configuration"
+...

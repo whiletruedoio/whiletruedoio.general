@@ -1,0 +1,55 @@
+---
+# roles/sudo/defaults/main.yml
+
+## Package Management
+
+sudo_package_names:
+  - "sudo"
+sudo_package_state: "present"
+
+## Configuration Management
+
+# Reset environment and use env_keep
+sudo_conf_env_reset: true
+# Show asterisks, when typing a password
+sudo_conf_pwfeedback: false
+# lecture once|always|never
+sudo_conf_lecture: "once"
+# define another lecture message from a file
+#sudo_conf_lecture_file: "/path/to/file"
+sudo_conf_secure_path: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+sudo_conf_root_user:
+  host: "ALL"
+  runas: "ALL"
+  cmnd: "ALL"
+  # optional: use tag PASSWD|NOPASSWD
+  # tag: ""
+
+# The wheel group is the default group for sudo on most GNU/Linux distributions
+sudo_conf_wheel_group:
+  enabled: true
+  host: "ALL"
+  runas: "ALL"
+  cmnd: "ALL"
+  # optional: use tag PASSWD|NOPASSWD
+  # tag: ""
+
+# The sudo group is the default group for sudo on some GNU/Linux distributions
+sudo_conf_sudo_group:
+  enabled: false
+  host: "ALL"
+  runas: "ALL"
+  cmnd: "ALL"
+  # optional: use tag PASSWD|NOPASSWD
+  # tag: ""
+
+# Additonal users and groups can be defined here
+sudo_conf_sudoers: []
+#   - name: "NAME"
+#     type: "user|group|netgroup"
+#     host: "HOST_SPEC"
+#     runas: "RUNAS_SPEC"
+#     cmnd: "COMMAND"
+#     tag: "PASSWD|NOPASSWD"
+...

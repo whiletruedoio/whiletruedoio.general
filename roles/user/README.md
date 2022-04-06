@@ -23,6 +23,10 @@ amount of machines, where local users are needed. You can:
 - update authorized keys for users
 - assign users to one or more groups
 
+The role also provides an option to grant a user sudo privileges, but this is
+a very minimal implementation. In case, you need a more sophisticated sudo
+management, please have a look at the whiletruedoio.general.sudo role.
+
 ## Usage
 
 We are really happy, that you consider using our software. In case you want to

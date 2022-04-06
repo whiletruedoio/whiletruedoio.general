@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+
+{% if item.type == "user" %}
+{{ item.name | mandatory }} {{ item.host | default('ALL') }} = ({{ item.runas | default('ALL') }}) {% if item.tag is defined %}{{ item.tag }}:{% endif %} {{ item.cmnd | default('ALL') }}
+{% elif item.type == "group" %}
+%{{ item.name | mandatory }} {{ item.host | default('ALL') }} = ({{ item.runas | default('ALL') }}) {% if item.tag is defined %}{{ item.tag }}:{% endif %} {{ item.cmnd | default('ALL') }}
+{% elif item.type == "netgroup" %}
++{{ item.name | mandatory }} {{ item.host | default('ALL') }} = ({{ item.runas | default('ALL') }}) {% if item.tag is defined %}{{ item.tag }}:{% endif %} {{ item.cmnd | default('ALL') }}
+{% endif %}

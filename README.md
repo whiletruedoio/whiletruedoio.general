@@ -13,6 +13,13 @@ reference: https://commonmark.org/
 
 Ansible collection for general purpose plugins, roles and playbooks.
 
+## Disclaimer
+
+This collection is under heavy development and there is no release available,
+yet. Things that work today, may not work tomorrow. This disclaimer will be
+removed as soon as there is the initial release, according to the
+[TODO](./docs/TODO.md) and [CHANGELOG](CHANGELOG.md).
+
 ## Motivation
 
 At [while-true-do.io](https://while-true-do.io), we faced the situation, that
@@ -45,10 +52,11 @@ The following roles are bundled with this collection.
 - [firewalld](roles/firewalld/README.md)
 - [k3s](roles/k3s/README.md)
 - [misc](roles/misc/README.md)
-- [Podman](roles/podman/README.md)
 - [SELinux](roles/selinux/README.md)
 - [sshd](roles/sshd/README.md)
+- [sudo](roles/sudo/README.md)
 - [thermald](roles/thermald/README.md)
+- [tuned](roles/tuned/README.md)
 - [user](roles/user/README.md)
 
 ### Playbooks
