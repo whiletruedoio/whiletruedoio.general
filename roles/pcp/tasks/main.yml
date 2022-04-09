@@ -1,0 +1,41 @@
+---
+# roles/pcp/tasks/main.yml
+
+## Package Management
+
+- name: "Manage pcp Packages"
+  ansible.builtin.package:
+    name: "{{ pcp_package_names }}"
+    state: "{{ pcp_package_state }}"
+  become: true
+  notify:
+    - "Restart pcp Services"
+  tags:
+    - "pcp"
+    - "package"
+
+## Service Management
+
+- name: "Manage pcp Services"
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: "{{ pcp_service_state }}"
+    enabled: "{{ pcp_service_enabled }}"
+  become: true
+  loop: "{{ pcp_service_names }}"
+  when:
+    - "pcp_package_state != 'absent'"
+  tags:
+    - "pcp"
+    - "service"
+
+## Checks
+
+- name: "Import check Tasks"
+  ansible.builtin.import_tasks: "check.yml"
+  when:
+    - "pcp_checks_enabled | bool"
+  tags:
+    - "pcp"
+    - "check"
+...

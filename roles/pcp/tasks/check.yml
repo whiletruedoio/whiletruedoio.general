@@ -1,0 +1,19 @@
+---
+# roles/pcp/tasks/check.yml
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "pcp"
+    - "check"
+
+- name: "Check pcp"
+  ansible.builtin.assert:
+    that:
+      - "pcp in ansible_facts.packages"
+      - "pcp-zeroconf in ansible_facts.packages"
+  tags:
+    - "pcp"
+    - "check"
+...

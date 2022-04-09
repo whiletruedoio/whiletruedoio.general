@@ -52,6 +52,7 @@ The following roles are bundled with this collection.
 - [firewalld](roles/firewalld/README.md)
 - [k3s](roles/k3s/README.md)
 - [misc](roles/misc/README.md)
+- [Perfomance Co-Pilot](roles/pcp/README.md)
 - [SELinux](roles/selinux/README.md)
 - [sshd](roles/sshd/README.md)
 - [sudo](roles/sudo/README.md)
