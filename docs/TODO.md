@@ -23,7 +23,7 @@ Plain ToDo file for whiletruedoio.general.
 - [ ] base server playbook
   - [x] minimal server playbook
   - [ ] kdump role
-  - [ ] pcp role
+  - [x] pcp role
   - [x] thermald role
   - [x] tuned role
   - [x] cockpit role
@@ -39,6 +39,10 @@ Plain ToDo file for whiletruedoio.general.
 - [ ] Update user documentation
 - [ ] All roles need proper argument specs
 - [ ] All roles need proper integration tests
+- [ ] Setup automated tests
+  - [ ] Sanity tests
+  - [ ] Integration Tests
+- [ ] Setup automated build and deliver to ansible galaxy
 
 ## Release v2.0.0
 

@@ -1,0 +1,23 @@
+---
+# roles/pcp/defaults/main.yml
+
+## Package Management
+
+pcp_package_names:
+  - "pcp"
+  - "pcp-zeroconf"
+pcp_package_state: "present"
+
+## Service Management
+
+pcp_service_names:
+  - "pmcd.service"
+  - "pmlogger.service"
+  - "pmie.service"
+pcp_service_state: "started"
+pcp_service_enabled: true
+
+## Checks
+
+pcp_checks_enabled: false
+...
