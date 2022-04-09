@@ -1,0 +1,19 @@
+---
+# roles/update/tasks/main.yml
+
+- name: "Update Packages"
+  ansible.builtin.dnf:
+    name: "{{ update_package_names }}"
+    state: "latest"
+    security: "{{ update_package_security_only }}"
+    bugfix: "{{ update_package_bugfix_only }}"
+  become: true
+  when:
+    - "update_reboot_enabled | bool"
+  notify:
+    - "Reboot System"
+  tags:
+    - "update"
+    - "package"
+    - "system"
+...

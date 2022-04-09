@@ -1,45 +1,67 @@
 ---
-# playbooks/minimal.yml for whiletruedoio.general
+# playbooks/minimal_server.yml
 #
-# This playbook provides some minimal automation for servers and desktops.
-# It can be used as a base-line for further automations.
+# This playbook provides some minimal automation for servers.
+# It can be used as a base-line for further automation.
 
-- name: "Minimal Server"
+- name: "Configure Minimal Server"
   hosts: "all"
 
   tasks:
 
-    - name: "Import misc Role"
+    - name: "Import bash Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.misc"
-
-    - name: "Import dnf Role"
-      ansible.builtin.import_role:
-        name: "whiletruedoio.general.dnf"
+        name: "whiletruedoio.general.bash"
+      tags:
+        - "bash"
 
     - name: "Import chrony Role"
       ansible.builtin.import_role:
         name: "whiletruedoio.general.chrony"
+      tags:
+        - "chrony"
 
-    - name: "Import bash Role"
+    - name: "Import dnf Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.bash"
-
-    - name: "Import selinux Role"
-      ansible.builtin.import_role:
-        name: "whiletruedoio.general.selinux"
+        name: "whiletruedoio.general.dnf"
+      tags:
+        - "dnf"
 
     - name: "Import firewalld Role"
       ansible.builtin.import_role:
         name: "whiletruedoio.general.firewalld"
+      tags:
+        - "firewalld"
+
+    - name: "Import misc Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.misc"
+      tags:
+        - "misc"
+
+    - name: "Import selinux Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.selinux"
+      tags:
+        - "selinux"
 
     - name: "Import ssh Role"
       ansible.builtin.import_role:
         name: "whiletruedoio.general.ssh"
+      tags:
+        - "ssh"
+
+    - name: "Import sudo Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.sudo"
+      tags:
+        - "ssh"
 
     - name: "Import user Role"
       ansible.builtin.import_role:
         name: "whiletruedoio.general.user"
+      tags:
+        - "user"
       vars:
         user_users:
           - username: "admin"

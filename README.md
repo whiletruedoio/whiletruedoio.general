@@ -57,6 +57,7 @@ The following roles are bundled with this collection.
 - [sudo](roles/sudo/README.md)
 - [thermald](roles/thermald/README.md)
 - [tuned](roles/tuned/README.md)
+- [update](roles/update/README.md)
 - [user](roles/user/README.md)
 
 ### Playbooks

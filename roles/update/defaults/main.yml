@@ -1,0 +1,14 @@
+---
+# roles/update/defaults/main.yml
+
+## Package Management
+update_package_names: "*"
+
+### Scope
+update_package_security_only: false
+update_package_bugfix_only: false
+
+## Reboot
+update_reboot_enabled: true
+update_reboot_timeout: 3600
+...

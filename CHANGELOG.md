@@ -32,6 +32,10 @@ This is the changelog of
 - Added: tuned role
 - Added: sudo role
 - Updated: user role to point to sudo role
+- Added: dnf automatic to dnf role
+- Added: update role
+- Added: update playbook
+- Rename: playbook naming changed
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

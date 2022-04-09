@@ -9,6 +9,7 @@ argument_specs:
       firewalld_package_names:
         type: "list"
         elements: "str"
+        default: "firewalld"
         description: "Define the package names."
       firewalld_package_state:
         type: "str"
