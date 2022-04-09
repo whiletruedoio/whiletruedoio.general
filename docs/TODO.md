@@ -4,24 +4,24 @@ Plain ToDo file for whiletruedoio.general.
 
 ## Release v1.0.0
 
-- [ ] update playbooks
-  - [ ] update role
+- [x] update playbooks
+  - [x] update role
 
-- [ ] minimal server playbook
+- [x] minimal server playbook
   - [x] bash role
   - [x] chrony role (client only)
   - [x] dnf role
-    - [ ] add dnf automatic
+    - [x] add dnf automatic
   - [x] firewalld role
   - [x] misc role
   - [x] selinux role
-  - [x] sshd role
+  - [x] ssh role
   - [x] sudo role
   - [x] user role
     - [x] sudo-config per user
 
 - [ ] base server playbook
-  - [ ] minimal server playbook
+  - [x] minimal server playbook
   - [ ] kdump role
   - [ ] pcp role
   - [x] thermald role
@@ -37,6 +37,8 @@ Plain ToDo file for whiletruedoio.general.
   - [x] avahi role
 
 - [ ] Update user documentation
+- [ ] All roles need proper argument specs
+- [ ] All roles need proper integration tests
 
 ## Release v2.0.0
 

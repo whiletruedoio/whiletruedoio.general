@@ -1,0 +1,27 @@
+---
+# roles/dnf/tasks/dnf-automatic.yml
+
+## Package Management
+
+- name: "Manage dnf automatic Packages"
+  ansible.builtin.package:
+    name: "{{ dnf_automatic_package_names }}"
+    state: "{{ dnf_automatic_package_state }}"
+  become: true
+  tags:
+    - "dnf"
+    - "package"
+
+## Service Management
+
+- name: "Manage dnf automatic Timer"
+  ansible.builtin.service:
+    name: "{{ dnf_automatic_timer_name }}"
+    state: "{{ dnf_automatic_timer_state }}"
+    enabled: "{{ dnf_automatic_timer_enabled }}"
+  become: true
+  tags:
+    - "dnf"
+    - "service"
+    - "timer"
+...

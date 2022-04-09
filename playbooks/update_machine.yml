@@ -1,0 +1,14 @@
+---
+# playbooks/update.yml
+
+- name: "Update System"
+  hosts: "all"
+
+  tasks:
+
+    - name: "Import update Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.update"
+      tags:
+        - "update"
+...

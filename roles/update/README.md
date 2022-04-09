@@ -3,23 +3,20 @@ reference: https://www.makeareadme.com/
 reference: https://commonmark.org/
 -->
 
-# Ansible - dnf
+# Ansible - update
 
-An Ansible Role to install and configure the
-[DNF package manager](https://DNF.readthedocs.io/en/latest/).
+An Ansible Role to update packages.
 
 ## Motivation
 
-[DNF](https://dnf.readthedocs.io/en/latest/) is the standard Package Manager for
-all RHEL'ish GNU/Linux derivates, like CentOS, Fedora or Red Hat Enterprise
-Linux. Configuring it properly is mandatory for most operators.
+Applying updates is a common task among operators and developers. Automating
+this process will help to make it easy and apply updates on schedule.
 
 ## Description
 
-The role install DNF and additional plugins to configure parallel downloads or
-chosing of the fastest mirror. It can be used to install and configure automatic
-updates via
-[dnf-automatic](https://dnf.readthedocs.io/en/latest/automatic.html), too.
+The role applies updates to RHEL family systems and reboots the machine, if
+updates where applied. You can also limit the scope to security and bugfix
+patches.
 
 ## Usage
 
@@ -68,16 +65,15 @@ Just a simple example, using the defaults from the role.
 
   tasks:
 
-    - name: "Import dnf Role"
+    - name: "Import update Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.dnf"
+        name: "whiletruedoio.general.update"
 ...
 ```
 
 #### Advanced Example
 
-You can also raise/lower or raise the parallel downloads and change the dnf
-configuration as demonstrated below.
+Apply security updates only and don't reboot the system.
 
 ```yaml
 ---
@@ -86,29 +82,12 @@ configuration as demonstrated below.
 
   tasks:
 
-    - name: "Import dnf Role"
+    - name: "Import update Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.dnf"
+        name: "whiletruedoio.general.update"
       vars:
-        dnf_config_parallel_downloads: 5
-...
-```
-
-Enable dnf-automatic and automatic install of updates.
-
-```yaml
----
-- name: "Advanced Example"
-  hosts: "all"
-
-  tasks:
-
-    - name: "Import dnf Role"
-      ansible.builtin.import_role:
-        name: "whiletruedoio.general.dnf"
-      vars:
-        dnf_automatic_enabled: true
-        dnf_automatic_timer_name: "dnf-automatic-install.timer"
+        update_package_security_only: true
+        update_reboot_enabled: false
 ...
 ```
 

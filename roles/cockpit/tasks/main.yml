@@ -119,7 +119,7 @@
 
 ## Checks
 
-- name: "Import Checks for cockpit"
+- name: "Import check Tasks"
   ansible.builtin.import_tasks: "check.yml"
   when:
     - "cockpit_checks_enabled | bool"

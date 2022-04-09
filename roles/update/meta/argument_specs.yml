@@ -1,0 +1,15 @@
+---
+# roles/update/meta/argument_specs.yml
+
+argument_specs:
+  # roles/update/tasks/main.yml entry point
+  main:
+    short_description: "The main entrypoint for update."
+    options:
+      # Package Management
+      update_package_names:
+        description: "Define the package names."
+        type: "list"
+        elements: "str"
+        default: "*"
+...

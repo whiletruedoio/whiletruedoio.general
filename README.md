@@ -57,6 +57,7 @@ The following roles are bundled with this collection.
 - [sudo](roles/sudo/README.md)
 - [thermald](roles/thermald/README.md)
 - [tuned](roles/tuned/README.md)
+- [update](roles/update/README.md)
 - [user](roles/user/README.md)
 
 ### Playbooks
@@ -64,7 +65,8 @@ The following roles are bundled with this collection.
 The following playbooks are bundled with this collection and provide examples
 for role usage or templates for further improvements.
 
-- [minimal server](playbooks/minimal_server.yml)
+- [configure minimal server](playbooks/configure_minimal_server.yml)
+- [update machine](playbooks/update_machine.yml)
 
 ## Usage
 

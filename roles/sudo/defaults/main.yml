@@ -16,7 +16,8 @@ sudo_conf_pwfeedback: false
 # lecture once|always|never
 sudo_conf_lecture: "once"
 # define another lecture message from a file
-#sudo_conf_lecture_file: "/path/to/file"
+# sudo_conf_lecture_file: "/path/to/file"
+# yamllint disable-line rule:line-length
 sudo_conf_secure_path: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 sudo_conf_root_user:

@@ -1,0 +1,13 @@
+---
+# roles/update/handlers/main.yml
+
+- name: "Reboot system"
+  ansible.builtin.reboot:
+    reboot_timeout: "{{ update_reboot_timeout }}"
+  become: true
+  tags:
+    - "update"
+    - "package"
+    - "system"
+    - "reboot"
+...

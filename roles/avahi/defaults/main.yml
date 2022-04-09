@@ -3,7 +3,9 @@
 
 ## Package Management
 
-avahi_package_names: "avahi"
+avahi_package_names:
+  - "avahi"
+  - "nss-mdns"
 avahi_package_state: "present"
 
 ## Service Management

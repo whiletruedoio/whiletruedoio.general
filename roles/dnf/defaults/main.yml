@@ -1,14 +1,12 @@
 ---
 # roles/dnf/defaults/main.yml
 
-## Package Management
+## DNF
 
 dnf_package_names:
   - "dnf"
   - "dnf-plugins-core"
 dnf_package_state: "present"
-
-## Configuration Management
 
 ### Please check 'man 5 dnf.conf' before changing the below values
 dnf_config_gpgcheck: "True"
@@ -18,6 +16,23 @@ dnf_config_best: "False"
 dnf_config_skip_if_unavailable: "True"
 dnf_config_fastestmirror: "True"
 dnf_config_max_parallel_downloads: "10"
+
+## DNF automatic
+
+dnf_automatic_enabled: false
+
+dnf_automatic_package_names:
+  - "dnf-automatic"
+dnf_automatic_package_state: "present"
+
+# The timer can be chosen as described below
+# dnf-automatic             : use the configuration in /etc/dnf/automatic.conf
+# dnf-automatic-notifyonly  : notify only about new updates
+# dnf-automaric-download    : download new updates
+# dnf-automatic-install     : download and install
+dnf_automatic_timer_name: "dnf-automatic-notifyonly"
+dnf_automatic_timer_state: "started"
+dnf_automatic_timer_enabled: true
 
 ## Checks
 
