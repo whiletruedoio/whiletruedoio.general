@@ -17,7 +17,7 @@ lint_yaml_task:
   name: "Lint YAML"
   container:
     image: "docker.io/library/alpine:latest"
-  install_script: "apk update && apk add yamllint"
+  install_script: "apk add --no-cache yamllint"
   lint_script: "yamllint ."
 
 lint_ansible_task:
