@@ -51,6 +51,7 @@ The following roles are bundled with this collection.
 - [Cockpit](roles/cockpit/README.md)
 - [dnf](roles/dnf/README.md)
 - [firewalld](roles/firewalld/README.md)
+- [Glances](roles/glances/README.md)
 - [k3s](roles/k3s/README.md)
 - [misc](roles/misc/README.md)
 - [Perfomance Co-Pilot](roles/pcp/README.md)

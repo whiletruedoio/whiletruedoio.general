@@ -1,0 +1,28 @@
+---
+# roles/glances/defaults/main.yml
+
+## Package Management
+
+glances_package_names:
+  - "glances"
+  - "python3-bottle"
+glances_package_state: "present"
+
+## Configuration Management
+
+glances_web_port: "61208"
+
+## Service Management
+
+glances_web_service_name: "glances-web.service"
+glances_web_service_state: "started"
+glances_web_service_enabled: true
+
+## Firewall Management
+
+glances_web_firewall_port: "{{ glances_web_port }}/tcp"
+glances_web_firewall_state: "enabled"
+glances_web_firewall_zone: ""
+glances_web_firewall_immediate: true
+glances_web_firewall_permanent: true
+...

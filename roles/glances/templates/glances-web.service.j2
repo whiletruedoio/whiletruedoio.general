@@ -1,0 +1,16 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Service to handle the glances web server.
+
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+
+ExecStart=/usr/bin/glances --webserver --port {{ glances_web_port }}
+Type=simple
+
+[Install]
+WantedBy=default.target
