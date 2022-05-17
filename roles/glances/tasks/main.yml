@@ -1,0 +1,70 @@
+---
+# roles/glances/tasks/main.yml
+
+## Package Management
+
+- name: "Manage glances Packages"
+  ansible.builtin.package:
+    name: "{{ glances_package_names }}"
+    state: "{{ glances_package_state }}"
+  become: true
+  notify:
+    - "Restart glances Service"
+  tags:
+    - "glances"
+    - "package"
+
+## Configuration Management
+
+- name: "Manage glances Service File"
+  ansible.builtin.template:
+    src: "{{ glances_web_service_name }}.j2"
+    dest: "/etc/systemd/system/{{ glances_web_service_name }}"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  notify:
+    - "Restart glances Service"
+  tags:
+    - "glances"
+    - "configuration"
+
+## Service Management
+
+- name: "Manage glances Service"
+  ansible.builtin.systemd:
+    name: "{{ glances_web_service_name }}"
+    state: "{{ glances_web_service_state }}"
+    enabled: "{{ glances_web_service_enabled }}"
+    daemon_reload: true
+  become: true
+  when:
+    - "glances_package_state != 'absent'"
+  tags:
+    - "glances"
+    - "service"
+
+## Firewall Management
+
+- name: "Gather package Facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+  tags:
+    - "glances"
+    - "package"
+
+- name: "Manage glances Firewall Policy"
+  ansible.posix.firewalld:
+    port: "{{ glances_web_firewall_port }}"
+    state: "{{ glances_web_firewall_state }}"
+    zone: "{{ glances_web_firewall_zone | default(omit) }}"
+    immediate: "{{ glances_web_firewall_immediate }}"
+    permanent: "{{ glances_web_firewall_permanent }}"
+  become: true
+  when:
+    - "'firewalld' in ansible_facts.packages"
+  tags:
+    - "glances"
+    - "firewall"
+...

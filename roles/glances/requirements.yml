@@ -1,0 +1,8 @@
+---
+# roles/glances/requirements.yml
+
+collections:
+  - name: "ansible.posix"
+
+roles: []
+...

@@ -37,6 +37,7 @@ This is the changelog of
 - Added: update playbook
 - Rename: playbook naming changed
 - Added: pcp role
+- Added: glances role
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

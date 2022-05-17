@@ -1,0 +1,17 @@
+---
+# roles/glances/handlers/main.yml
+
+- name: "Restart glances Service"
+  ansible.builtin.systemd:
+    name: "{{ glances_web_service_name }}"
+    state: "restarted"
+    daemon_reload: true
+  become: true
+  when:
+    - "glances_package_state != 'absent'"
+  tags:
+    - "glances"
+    - "package"
+    - "configuration"
+    - "service"
+...
