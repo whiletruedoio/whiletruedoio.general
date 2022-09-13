@@ -3,7 +3,7 @@
 
 ## Binary Management
 
-k3s_binary_version: "v1.21.2+k3s1"
+k3s_binary_version: "v1.25.0+k3s1"
 
 ## Configuration Management
 

@@ -1,0 +1,38 @@
+---
+# playbooks/configure_base_server.yml
+#
+# This playbook provides a base server configuration.
+# It includes all tasks from a minimal server, but also adds more roles to it.
+
+- name: "Import Minimal Server"
+  ansible.builtin.import_playbook: "configure_minimal_server.yml"
+
+- name: "Configure Base Server"
+  hosts: "all"
+
+  tasks:
+
+    - name: "Import pcp Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.pcp"
+      tags:
+        - "pcp"
+
+    - name: "Import thermald Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.thermald"
+      tags:
+        - "thermald"
+
+    - name: "Import tuned Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.tuned"
+      tags:
+        - "tuned"
+
+    - name: "Import cockpit Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.cockpit"
+      tags:
+        - "cockpit"
+...

@@ -20,9 +20,8 @@ Plain ToDo file for whiletruedoio.general.
   - [x] user role
     - [x] sudo-config per user
 
-- [ ] base server playbook
+- [x] base server playbook
   - [x] minimal server playbook
-  - [ ] kdump role
   - [x] pcp role
   - [x] thermald role
   - [x] tuned role
@@ -32,17 +31,9 @@ Plain ToDo file for whiletruedoio.general.
     - [x] package support
     - [x] kdump support
 
-- [ ] home server playbook
-  - [ ] base server playbook
+- [x] home server playbook
+  - [x] base server playbook
   - [x] avahi role
-
-- [ ] Update user documentation
-- [ ] All roles need proper argument specs
-- [ ] All roles need proper integration tests
-- [ ] Setup automated tests
-  - [ ] Sanity tests
-  - [ ] Integration Tests
-- [ ] Setup automated build and deliver to ansible galaxy
 
 ## Release v2.0.0
 

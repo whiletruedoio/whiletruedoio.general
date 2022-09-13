@@ -1,5 +1,5 @@
 ---
-# playbooks/minimal_server.yml
+# playbooks/configure_minimal_server.yml
 #
 # This playbook provides some minimal automation for servers.
 # It can be used as a base-line for further automation.

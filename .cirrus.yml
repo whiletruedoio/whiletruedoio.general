@@ -23,7 +23,8 @@ lint_yaml_task:
 lint_ansible_task:
   name: "Lint Ansible"
   container:
-    image: "quay.io/ansible/creator-ee:latest"
-  install_script: "ansible-galaxy collection install -r requirements.yml"
+    image: "docker.io/library/python:latest"
+  install_script: "pip install ansible ansible-lint"
+  prepare_script: "ansible-galaxy collection install -r requirements.yml"
   lint_script: "ansible-lint ."
 ...
