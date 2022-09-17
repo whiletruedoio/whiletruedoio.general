@@ -45,9 +45,9 @@
       tags:
         - "selinux"
 
-    - name: "Import ssh Role"
+    - name: "Import sshd Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.ssh"
+        name: "whiletruedoio.general.sshd"
       tags:
         - "ssh"
 
