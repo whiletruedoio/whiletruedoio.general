@@ -9,49 +9,34 @@ This is the changelog of
 
 ## [Unreleased]
 
-- Added: LICENSE
-- Added: metafiles (.gitmessage, .gitignore, .gitattributes, .editorconfig)
-- Added: .yamllint for sanity checks
-- Added: galaxy.yml for package builds
-- Added: role bash to install and configure Bash and tests for the role
-- Added: role misc to configure hostname, timezone, machine-id and install some
-  common tools
-- Added: ansible-lint
-- Added: role dnf to take care of dnf configuration
-- Added: role sshd to install and configure sshd
-- Added: role firewalld to install and configure firewalld
-- Added: role selinux to install and configure selinux
-- Updated: README.md documentation
-- Updated: galaxy.yml dependencies
-- Added: thermald role
-- Added: user role
-- Added: avahi role
-- Added: Cockpit Role
-- Added: k3s role
-- Added: Starship prompt to bash
-- Added: tuned role
-- Added: sudo role
-- Updated: user role to point to sudo role
-- Added: dnf automatic to dnf role
-- Added: update role
-- Added: update playbook
-- Rename: playbook naming changed
-- Added: pcp role
-- Added: glances role
+## [1.0.0] - 20220917
 
-## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
-
-<!--
-Describe the purpose of this release.
-Each of the below sections should contain the links to the fixed issues.
--->
+The initial release with a basic set of roles and playbooks.
 
 ### Added
 
-<!--
-Section for new Features and Additions.
-Most likely a MINOR or MAJOR update.
--->
+- role bash to install and configure Bash and tests for the role
+- Added: role misc to configure hostname, timezone, machine-id and install some
+  common tools
+- role dnf to take care of dnf configuration
+- role sshd to install and configure sshd
+- role firewalld to install and configure firewalld
+- role selinux to install and configure selinux
+- thermald role
+- user role
+- avahi role
+- Cockpit Role
+- k3s role
+- tuned role
+- sudo role
+- dnf automatic to dnf role
+- update role
+- pcp role
+- glances role
+- minimal server playbook
+- base server playbook
+- home server playbook
+- update playbook
 
 ### Changed
 
