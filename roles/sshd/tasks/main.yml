@@ -36,6 +36,7 @@
     mode: 0644
   become: true
   when:
+    - "sshd_config_Banner is defined"
     - "sshd_config_Banner != 'none'"
   notify:
     - "Restart ssh Service"
