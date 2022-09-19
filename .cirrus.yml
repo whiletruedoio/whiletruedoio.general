@@ -37,10 +37,10 @@ build_collection_task:
     - "Lint Ansible"
   container:
     image: "docker.io/library/python:latest"
-  binaries_artifacts:
-    path: "build/*"
   install_script: "pip install ansible-core"
   build_script: "ansible-galaxy collection build -f -vvv --output-path build/ ."
+  collection_artifacts:
+    path: "build/*"
 
 # Test
 # TODO: Run install tests before publish
