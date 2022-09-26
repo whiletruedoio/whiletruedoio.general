@@ -15,7 +15,7 @@ StrictModes {{ sshd_config_StrictModes }}
 {% if sshd_config_MaxAuthTries is defined %}
 MaxAuthTries {{ sshd_config_MaxAuthTries }}
 {% endif %}
-{% if  is defined %}
+{% if sshd_config_MaxStartups is defined %}
 MaxStartups {{ sshd_config_MaxStartups }}
 {% endif %}
 

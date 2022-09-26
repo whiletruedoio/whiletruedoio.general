@@ -9,7 +9,7 @@
     state: "{{ sshd_package_state }}"
   become: true
   notify:
-    - "Restart ssh Service"
+    - "Restart sshd Service"
   tags:
     - "ssh"
     - "sshd"
@@ -39,7 +39,7 @@
     - "sshd_config_Banner is defined"
     - "sshd_config_Banner != 'none'"
   notify:
-    - "Restart ssh Service"
+    - "Restart sshd Service"
   tags:
     - "ssh"
     - "sshd"
@@ -61,7 +61,7 @@
     - "logging"
     - "session"
   notify:
-    - "Restart ssh Service"
+    - "Restart sshd Service"
   tags:
     - "ssh"
     - "sshd"
