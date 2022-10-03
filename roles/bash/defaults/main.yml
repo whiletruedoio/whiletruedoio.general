@@ -11,7 +11,7 @@ bash_package_state: "present"
 bash_scripting_package_names:
   - "ShellCheck"
   - "bats"
-bash_scripting_package_state: "present"
+bash_scripting_package_state: "absent"
 
 ## Powerline-Go Prompt
 
