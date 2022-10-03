@@ -5,8 +5,8 @@
 
 - name: "Manage cockpit Base Packages"
   ansible.builtin.package:
-    name: "{{ cockpit_package_names }}"
-    state: "{{ cockpit_package_state }}"
+    name: "{{ cockpit_base_package_names }}"
+    state: "{{ cockpit_base_package_state }}"
   become: true
   notify:
     - "Restart cockpit Service"
@@ -96,7 +96,7 @@
     enabled: "{{ cockpit_service_enabled }}"
   become: true
   when:
-    - "cockpit_package_state != 'absent'"
+    - "cockpit_base_package_state != 'absent'"
   tags:
     - "cockpit"
     - "service"

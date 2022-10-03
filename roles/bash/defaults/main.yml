@@ -11,11 +11,11 @@ bash_package_state: "present"
 bash_scripting_package_names:
   - "ShellCheck"
   - "bats"
-bash_scripting_package_state: "present"
+bash_scripting_package_state: "absent"
 
 ## Powerline-Go Prompt
 
-bash_powerline_enabled: true
+bash_powerline_enabled: false
 bash_powerline_package_names:
   - "powerline-go"
 bash_powerline_package_state: "present"
@@ -31,8 +31,8 @@ bash_starship_system_enabled: true
 
 ## Dotfiles
 
-bash_dotfiles_enabled: true
-bash_dotfiles_system_enabled: true
+bash_dotfiles_enabled: false
+bash_dotfiles_system_enabled: false
 
 ## Checks
 

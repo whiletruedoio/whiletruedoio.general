@@ -9,7 +9,7 @@
     state: "{{ sshd_package_state }}"
   become: true
   notify:
-    - "Restart ssh Service"
+    - "Restart sshd Service"
   tags:
     - "ssh"
     - "sshd"
@@ -36,9 +36,10 @@
     mode: 0644
   become: true
   when:
+    - "sshd_config_Banner is defined"
     - "sshd_config_Banner != 'none'"
   notify:
-    - "Restart ssh Service"
+    - "Restart sshd Service"
   tags:
     - "ssh"
     - "sshd"
@@ -60,7 +61,7 @@
     - "logging"
     - "session"
   notify:
-    - "Restart ssh Service"
+    - "Restart sshd Service"
   tags:
     - "ssh"
     - "sshd"
@@ -76,6 +77,7 @@
     state: "present"
   become: true
   when:
+    - "sshd_config_Port is defined"
     - "ansible_selinux.status == 'enabled'"
     - "sshd_package_state != 'absent'"
   tags:

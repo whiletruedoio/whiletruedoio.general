@@ -69,6 +69,8 @@ The following playbooks are bundled with this collection and provide examples
 for role usage or templates for further improvements.
 
 - [configure minimal server](playbooks/configure_minimal_server.yml)
+- [configure base server](playbooks/configure_base_server.yml)
+- [configure home server](playbooks/configure_home_server.yml)
 - [update machine](playbooks/update_machine.yml)
 
 ## Usage
@@ -137,6 +139,8 @@ Were to find additional documentation?
 
 Optional: Use and link docs/*.md files
 -->
+
+TBD
 
 ## Contribute
 

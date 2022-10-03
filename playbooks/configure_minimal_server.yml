@@ -1,5 +1,5 @@
 ---
-# playbooks/minimal_server.yml
+# playbooks/configure_minimal_server.yml
 #
 # This playbook provides some minimal automation for servers.
 # It can be used as a base-line for further automation.
@@ -45,9 +45,9 @@
       tags:
         - "selinux"
 
-    - name: "Import ssh Role"
+    - name: "Import sshd Role"
       ansible.builtin.import_role:
-        name: "whiletruedoio.general.ssh"
+        name: "whiletruedoio.general.sshd"
       tags:
         - "ssh"
 

@@ -1,0 +1,21 @@
+---
+# playbooks/configure_home_server.yml
+#
+# This playbook provides a home server configuration.
+# It includes all tasks from a base server, but also adds more home server
+# specifics.
+
+- name: "Import Base Server"
+  ansible.builtin.import_playbook: "configure_base_server.yml"
+
+- name: "Configure Home Server"
+  hosts: "all"
+
+  tasks:
+
+    - name: "Import avahi Role"
+      ansible.builtin.import_role:
+        name: "whiletruedoio.general.avahi"
+      tags:
+        - "pcp"
+...

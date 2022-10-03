@@ -6,9 +6,9 @@ Defaults   !visiblepw
 {% if sudo_conf_pwfeedback | bool %}
 Defaults    pwfeedback
 {% endif %}
-Defaults    lecture = {{ sudo_conf_defaults.lecture }}
+Defaults    lecture = {{ sudo_conf_lecture }}
 {% if sudo_conf_lecture_file is defined %}
-Defaults    lecture_file = {{ sudo_conf_defaults.lecture_file }}
+Defaults    lecture_file = {{ sudo_conf_lecture_file }}
 {% endif %}
 {% if sudo_conf_env_reset | bool%}
 Defaults    env_reset

@@ -1,7 +1,7 @@
 ---
-# playbooks/update.yml
+# playbooks/updates.yml
 
-- name: "Update System"
+- name: "Update Machines"
   hosts: "all"
 
   tasks:

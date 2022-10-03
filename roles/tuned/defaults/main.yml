@@ -10,7 +10,7 @@ tuned_package_state: "present"
 
 ## Service Management
 
-tuned_service_names: "tuned.service"
+tuned_service_name: "tuned.service"
 tuned_service_state: "started"
 
 ## Checks
