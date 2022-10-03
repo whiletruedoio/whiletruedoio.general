@@ -6,7 +6,7 @@
     name: "{{ user.username }}"
     groups: "{{ user.groups | default(omit) }}"
     password: "{{ user.password_hash | default(omit) }}"
-    update_password: "{{ user.password_update | default('always')"
+    update_password: "{{ user.password_update | default('always') }}"
     uid: "{{ user.uid | default(omit) }}"
     shell: "{{ user.shell | default(omit) }}"
     home: "{{ user.home | default(omit) }}"
