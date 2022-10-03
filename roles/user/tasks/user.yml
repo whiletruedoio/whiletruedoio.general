@@ -11,7 +11,7 @@
     shell: "{{ user.shell | default(omit) }}"
     home: "{{ user.home | default(omit) }}"
     system: "{{ user.system | default(omit) }}"
-    state: "{{ user.state | default('present' }}"
+    state: "{{ user.state | default('present') }}"
   become: true
   tags:
     - "user"
