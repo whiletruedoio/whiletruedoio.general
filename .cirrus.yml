@@ -53,7 +53,7 @@ env:
   GALAXY_API_KEY: "ENCRYPTED[!bf62bd56a530b1c7e4b35d76f982271787f4a493512ce1a2d2263e4cea71d53c5a014ee3e114fb174b734b4856f4f375!]"
 
 publish_collection_task:
-  name: "Build Collection"
+  name: "Publish Collection"
   only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
             $CIRRUS_TAG != '' &&
             $CIRRUS_ENVIRONMENT != 'CLI'"
