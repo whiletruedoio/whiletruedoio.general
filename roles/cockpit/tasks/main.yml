@@ -96,7 +96,7 @@
     enabled: "{{ cockpit_service_enabled }}"
   become: true
   when:
-    - "cockpit_package_state != 'absent'"
+    - "cockpit_base_package_state != 'absent'"
   tags:
     - "cockpit"
     - "service"
